@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Scenes.Controllers.SignInSceneController" prefHeight="405.0" prefWidth="360.0"
+            stylesheets="@signInSceneStyle.css">
+    <top>
+        <MenuBar id="helpMenuBar">
+            <Menu text="Help">
+                <MenuItem text="Contact"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Information"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <VBox alignment="CENTER">
+            <HBox alignment="CENTER">
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Login: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label text="Password: " GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+
+                    <TextField fx:id="LOGIN_FIELD" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <PasswordField fx:id="PASSWORD_FIELD" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <HBox GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2" alignment="CENTER">
+                        <Label id="askAboutAccountTextLabel" text="Don't have account yet?"/>
+                    </HBox>
+                    <HBox GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2" alignment="CENTER">
+                        <Label id="registerTextLabel" text="Register"/>
+                    </HBox>
+                </GridPane>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
+

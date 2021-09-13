@@ -16,12 +16,17 @@ public class SignInSceneConstants {
 
     // Relative path (starting from project's root directory) to parent directory of signInScene.fxml.
     public static final String SIGN_IN_SCENE_RELATIVE_STRING_PATH_TO_FXML_PARENT_DIR =
-            "src" + separator + "main" + separator + "resources" + separator + "Scenes";
+            "src" + separator + "main" + separator + "resources" + separator + "Scenes" + separator
+            + "Creators";
 
     // FXML file containing code about look and behaviour of SignInScene.
-    public static final String SIGN_IN_SCENE_STRING_PATH = "signInScene.fxml";
+    public static final String SIGN_IN_SCENE_FXML_NAME = "signInScene.fxml";
 
     // Absolute path to parent directory of signInScene.fxml file.
     public static final Path SIGN_IN_SCENE_ABSOLUTE_PATH_TO_FXML_PARENT_DIR =
             Paths.get(SIGN_IN_SCENE_PROJECT_STRING_PATH, SIGN_IN_SCENE_RELATIVE_STRING_PATH_TO_FXML_PARENT_DIR);
+
+    // Height and width for Sign In Scene.
+    public static final Double SIGN_IN_SCENE_HEIGHT = 405.00D;
+    public static final Double SIGN_IN_SCENE_WIDTH = 360.00D;
 }

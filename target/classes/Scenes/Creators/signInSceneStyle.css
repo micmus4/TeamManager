@@ -1,0 +1,18 @@
+#registerTextLabel {
+    -fx-text-fill: blue;
+    -fx-font-weight: bold;
+}
+
+#askAboutAccountTextLabel {
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#registerTextLabel:hover{
+    -fx-underline: true;
+    -fx-font-style: italic;
+}
+
+#helpMenuBar{
+    -fx-background-color: transparent;
+}

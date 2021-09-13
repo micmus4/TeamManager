@@ -2,6 +2,8 @@ module Main {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens Main to javafx.fxml;
-    exports Main;
+    exports Scenes.Controllers;
+    opens Scenes.Controllers to javafx.fxml;
+    exports Scenes.Creators;
+    opens Scenes.Creators to javafx.fxml;
 }

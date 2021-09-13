@@ -1,3 +1,5 @@
-D:\JavaProjects\TeamManager\src\main\java\Scenes\SignIn.java
+D:\JavaProjects\TeamManager\src\main\java\Scenes\Controllers\SignInSceneController.java
+D:\JavaProjects\TeamManager\src\main\java\Constants\SignInSceneConstants\SignInSceneConstants.java
 D:\JavaProjects\TeamManager\src\main\java\module-info.java
-D:\JavaProjects\TeamManager\src\main\java\Main\Main.java
+D:\JavaProjects\TeamManager\src\main\java\Scenes\Creators\SignInSceneCreator.java
+D:\JavaProjects\TeamManager\src\main\java\Colours\Colours.java
