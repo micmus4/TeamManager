@@ -1,5 +1,9 @@
+Colours\Colours.class
+Scenes\Controllers\HelpContactSceneController.class
+Constants\ProjectsConstants.class
 module-info.class
 Scenes\Creators\SignInSceneCreator.class
-Constants\SignInSceneConstants\SignInSceneConstants.class
-Colours\Colours.class
+Constants\HelpContactSceneConstants.class
+Scenes\Creators\HelpContactSceneCreator.class
+Constants\SignInSceneConstants.class
 Scenes\Controllers\SignInSceneController.class
