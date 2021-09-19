@@ -1,8 +1,9 @@
 package Scenes.Creators;
 
 
-import Colours.Colours;
 import Constants.HelpContactSceneConstants;
+import Constants.ProjectConstants;
+import Utils.AlertUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +17,7 @@ import java.util.Objects;
 public class HelpContactSceneCreator {
 
     private static HelpContactSceneCreator helpContactScene = new HelpContactSceneCreator();
-    private final URL HELP_CONTACT_SCENE_URL_TO_FXML = getClass().getResource(HelpContactSceneConstants.HELP_CONTACT_SCENE_FXML_NAME);
+    private URL HELP_CONTACT_FXML_URL;
 
     public HelpContactSceneCreator() {
     }
@@ -26,16 +27,27 @@ public class HelpContactSceneCreator {
         Parent root;
 
         try{
-            root = FXMLLoader.load(Objects.requireNonNull(HELP_CONTACT_SCENE_URL_TO_FXML));
-        } catch (IOException | NullPointerException e) {
-            System.out.println(Colours.ANSI_RED + "No " + HelpContactSceneConstants.HELP_CONTACT_SCENE_FXML_NAME + " file found in " +
-                    HelpContactSceneConstants.HELP_CONTACT_SCENE_ABSOLUTE_PATH_TO_FXML_PARENT_DIR + " directory." + Colours.RESET_COLOUR);
+
+            HELP_CONTACT_FXML_URL = new URL( ProjectConstants.PROTOCOL, ProjectConstants.HOST, HelpContactSceneConstants.HELP_CONTACT_SCENE_ABSOLUTE_STRING_PATH_TO_FXML );
+            root = FXMLLoader.load( Objects.requireNonNull( HELP_CONTACT_FXML_URL ) );
+
+        } catch ( IOException | NullPointerException e ) {
+
+            String headerText = e.getClass().getCanonicalName();
+            String contentText = e.getMessage();
+            AlertUtils.popUpErrorAlert( headerText, contentText );
+
             return null;
         }
 
-        helpContactStage.setTitle("Contact");
-        helpContactStage.setResizable(false);
-        helpContactStage.setScene(new Scene(root, HelpContactSceneConstants.HELP_CONTACT_SCENE_HEIGHT, HelpContactSceneConstants.HELP_CONTACT_SCENE_WIDTH));
+        helpContactStage.setTitle( "Contact" );
+        helpContactStage.setResizable( false );
+        Scene helpContactScene = new Scene( root, HelpContactSceneConstants.HELP_CONTACT_SCENE_HEIGHT, HelpContactSceneConstants.HELP_CONTACT_SCENE_WIDTH );
+
+        helpContactScene.getStylesheets().clear();
+        helpContactScene.getStylesheets().add( HelpContactSceneConstants.HELP_CONTACT_SCENE_CSS_ABSOLUTE_STRING_PATH );
+
+        helpContactStage.setScene( helpContactScene );
         return helpContactStage;
     }
 
