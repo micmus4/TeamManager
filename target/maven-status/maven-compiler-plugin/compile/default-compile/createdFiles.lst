@@ -1,9 +1,9 @@
-Colours\Colours.class
-Scenes\Controllers\HelpContactSceneController.class
-Constants\ProjectConstants.class
+utils\AlertUtils.class
+constants\ProjectConstants.class
+constants\SocialMediaConstants.class
+start\Start.class
+constants\HelpContactSceneConstants.class
+scenes\HelpContactScene.class
 module-info.class
-Scenes\Creators\SignInSceneCreator.class
-Constants\HelpContactSceneConstants.class
-Scenes\Creators\HelpContactSceneCreator.class
-Constants\SignInSceneConstants.class
-Scenes\Controllers\SignInSceneController.class
+constants\SignInSceneConstants.class
+scenes\SignInScene.class
