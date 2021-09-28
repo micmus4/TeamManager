@@ -1,48 +1,49 @@
 package scenes;
 
-import constants.ProjectConstants;
 import constants.SocialMediaConstants;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import utils.AlertUtils;
+import utils.SceneUtils;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class HelpContactScene {
+public class HelpContactScene
+{
 
     @FXML
     private Label versionLabel;
 
     public void initialize()
     {
-        versionLabel.setText( ProjectConstants.VERSION_INFO );
+        SceneUtils.setProjectVersionLabel( versionLabel );
     }
 
     @FXML
     private void openLinkedinInBrowser()
     {
-        openSiteInBrowser( SocialMediaConstants.LINKEDIN );
+        openSiteInBrowser( SocialMediaConstants.LINKEDIN.getLink() );
     }
 
     @FXML
     private void openFacebookInBrowser()
     {
-        openSiteInBrowser( SocialMediaConstants.FACEBOOK );
+        openSiteInBrowser( SocialMediaConstants.FACEBOOK.getLink() );
     }
 
     @FXML
     private void openGithubInBrowser()
     {
-        openSiteInBrowser( SocialMediaConstants.GITHUB );
+        openSiteInBrowser( SocialMediaConstants.GITHUB.getLink() );
     }
 
     @FXML
     private void openInstagramInBrowser()
     {
-        openSiteInBrowser( SocialMediaConstants.INSTAGRAM );
+        openSiteInBrowser( SocialMediaConstants.INSTAGRAM.getLink() );
     }
 
     private void openSiteInBrowser( String link )

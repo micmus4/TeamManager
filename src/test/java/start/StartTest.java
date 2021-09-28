@@ -2,16 +2,16 @@ package start;
 
 
 import constants.SignInSceneConstants;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.net.URL;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class StartTest
 {
-
     private static URL validURLToSignInSceneFXML;
     private static URL invalidURLToSignInSceneFXML;
     private static File fxmlFile;
@@ -33,59 +33,54 @@ public class StartTest
     }
 
 
-    @Test
-    public void isPathToSignInSceneFXMLFileCorrect()
-    {
 
-        Assertions.assertThrows( NullPointerException.class, () -> invalidURLToSignInSceneFXML.getPath(),
+    @Test
+    public void fxmlFileCorrectness()
+    {
+        assertThrows( NullPointerException.class, () -> invalidURLToSignInSceneFXML.getPath(),
                 "Should throw NullPointerException, invalid path to " + SignInSceneConstants.SIGN_IN_SCENE_FXML_NAME );
 
-        Assertions.assertDoesNotThrow( () -> validURLToSignInSceneFXML.getPath(),
+        assertDoesNotThrow( () -> validURLToSignInSceneFXML.getPath(),
                 "Correct path to " + SignInSceneConstants.SIGN_IN_SCENE_FXML_NAME + ", shouldn't throw any exceptions." );
 
-
-        Assertions.assertTrue( fxmlFile.exists(),
+        assertTrue( fxmlFile.exists(),
                 SignInSceneConstants.SIGN_IN_SCENE_FXML_NAME + " should exist" );
 
-        Assertions.assertFalse( fxmlFile.isDirectory(),
+        assertFalse( fxmlFile.isDirectory(),
                 SignInSceneConstants.SIGN_IN_SCENE_FXML_NAME + " shouldn't be a directory.");
 
-        Assertions.assertTrue( fxmlFile.canRead(),
+        assertTrue( fxmlFile.canRead(),
                 SignInSceneConstants.SIGN_IN_SCENE_FXML_NAME + " should be readable." );
 
-        Assertions.assertTrue( fxmlFile.canWrite(),
+        assertTrue( fxmlFile.canWrite(),
                 SignInSceneConstants.SIGN_IN_SCENE_FXML_NAME + " should be writeable." );
 
-        Assertions.assertTrue( fxmlFile.canExecute(),
+        assertTrue( fxmlFile.canExecute(),
                 SignInSceneConstants.SIGN_IN_SCENE_FXML_NAME + " should be executable." );
-
     }
 
     @Test
-    public void isPathToSignInSceneCSSFileCorrect()
+    public void cssFileCorrectness()
     {
-
-        Assertions.assertThrows( NullPointerException.class, () -> invalidURLToSignInSceneCSS.getPath(),
+        assertThrows( NullPointerException.class, () -> invalidURLToSignInSceneCSS.getPath(),
                 "Should throw NullPointerException, invalid path to " + SignInSceneConstants.SIGN_IN_SCENE_RESOURCES_CSS );
 
-        Assertions.assertDoesNotThrow( () -> validURLToSignInSceneCSS.getPath(),
+        assertDoesNotThrow( () -> validURLToSignInSceneCSS.getPath(),
                 "Correct path to " + SignInSceneConstants.SIGN_IN_SCENE_RESOURCES_CSS + ", shouldn't throw any exceptions." );
 
-        Assertions.assertTrue( cssFile.exists(),
+        assertTrue( cssFile.exists(),
                 SignInSceneConstants.SIGN_IN_SCENE_RESOURCES_CSS + " should exist" );
 
-        Assertions.assertFalse( cssFile.isDirectory(),
+        assertFalse( cssFile.isDirectory(),
                 SignInSceneConstants.SIGN_IN_SCENE_RESOURCES_CSS + " shouldn't be a directory.");
 
-        Assertions.assertTrue( cssFile.canRead(),
+        assertTrue( cssFile.canRead(),
                 SignInSceneConstants.SIGN_IN_SCENE_RESOURCES_CSS + " should be readable." );
 
-        Assertions.assertTrue( cssFile.canWrite(),
+        assertTrue( cssFile.canWrite(),
                 SignInSceneConstants.SIGN_IN_SCENE_RESOURCES_CSS + " should be writeable." );
 
-        Assertions.assertTrue( cssFile.canExecute(),
+        assertTrue( cssFile.canExecute(),
                 SignInSceneConstants.SIGN_IN_SCENE_RESOURCES_CSS + " should be executable." );
-
     }
-
 }

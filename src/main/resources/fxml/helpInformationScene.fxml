@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Separator?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="scenes.HelpInformationScene">
+
+
+    <center>
+        <HBox alignment="CENTER">
+            <VBox alignment="CENTER">
+                <TextFlow>
+                    <padding>
+                        <Insets left="15" right="15"/>
+                    </padding>
+                    <Text id="teamManagerLabel" text="Team Manager"/>
+                    <Text text=" is a Java application that provides variety of functionalities to control your football club."/>
+                    <Text text=" You can manage all teams from your club, starting from first team to youth teams."/>
+                    <Text text=" Not only footballers are your responsibility, but also coaching staff, medical staff,"/>
+                    <Text text=" club facilities, finances and many many more!"/>
+                    <Separator orientation="VERTICAL"/>
+                </TextFlow>
+                <TextFlow>
+                    <padding>
+                        <Insets left="15" right="15"/>
+                    </padding>
+                    <Text text="Application is created by "/>
+                    <Text id="authorInfoLabel" text="Michal Musialowicz"/>
+                    <Text text=", 20 years old Java developer from Poznan who is currently working at PSI Poland as Junior Java Developer"/>
+                    <Text text=" and also studying IT at University of Adam Mickiewicz"/>
+                </TextFlow>
+            </VBox>
+        </HBox>
+    </center>
+    <bottom>
+        <BorderPane>
+            <padding>
+                <Insets right="5" bottom="5"/>
+            </padding>
+            <right>
+                <Label fx:id="versionLabel" id="version"/>
+            </right>
+        </BorderPane>
+    </bottom>
+</BorderPane>

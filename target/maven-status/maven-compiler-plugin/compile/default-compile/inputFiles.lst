@@ -2,8 +2,11 @@ D:\JavaProjects\TeamManager\src\main\java\constants\SocialMediaConstants.java
 D:\JavaProjects\TeamManager\src\main\java\scenes\HelpContactScene.java
 D:\JavaProjects\TeamManager\src\main\java\utils\AlertUtils.java
 D:\JavaProjects\TeamManager\src\main\java\constants\ProjectConstants.java
+D:\JavaProjects\TeamManager\src\main\java\scenes\HelpInformationScene.java
+D:\JavaProjects\TeamManager\src\main\java\utils\SceneUtils.java
 D:\JavaProjects\TeamManager\src\main\java\module-info.java
 D:\JavaProjects\TeamManager\src\main\java\constants\HelpContactSceneConstants.java
 D:\JavaProjects\TeamManager\src\main\java\scenes\SignInScene.java
 D:\JavaProjects\TeamManager\src\main\java\constants\SignInSceneConstants.java
+D:\JavaProjects\TeamManager\src\main\java\constants\HelpInformationSceneConstants.java
 D:\JavaProjects\TeamManager\src\main\java\start\Start.java

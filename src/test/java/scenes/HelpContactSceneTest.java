@@ -18,16 +18,16 @@ class HelpContactSceneTest
         assertThrows( URISyntaxException.class, () -> new URI( "Invalid URI" ),
                 "Invalid URI, should throw URISyntaxException." );
 
-        assertDoesNotThrow( () -> new URI( SocialMediaConstants.FACEBOOK ),
+        assertDoesNotThrow( () -> new URI( SocialMediaConstants.FACEBOOK.getLink() ),
                 "Valid URI to Facebook site, shouldn't throw any exceptions." );
 
-        assertDoesNotThrow( () -> new URI( SocialMediaConstants.INSTAGRAM ),
+        assertDoesNotThrow( () -> new URI( SocialMediaConstants.INSTAGRAM.getLink() ),
                 "Valid URI to Instagram site, shouldn't throw any exceptions." );
 
-        assertDoesNotThrow( () -> new URI( SocialMediaConstants.GITHUB ),
+        assertDoesNotThrow( () -> new URI( SocialMediaConstants.GITHUB.getLink() ),
                 "Valid URI to Github site, shouldn't throw any exceptions." );
 
-        assertDoesNotThrow( () -> new URI( SocialMediaConstants.LINKEDIN ),
+        assertDoesNotThrow( () -> new URI( SocialMediaConstants.LINKEDIN.getLink() ),
                 "Valid URI to Linkedin site, shouldn't throw any exceptions." );
     }
 }

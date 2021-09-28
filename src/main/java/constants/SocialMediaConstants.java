@@ -1,10 +1,27 @@
 package constants;
 
-public class SocialMediaConstants {
+public enum SocialMediaConstants
+{
+    /**
+     * Links to my social medias.
+     */
 
-    // Links to my social media.
-    public static String INSTAGRAM = "https://www.instagram.com/muuusial_/";
-    public static String GITHUB = "https://github.com/micmus4";
-    public static String FACEBOOK = "https://www.facebook.com/michalmusialowicz01";
-    public static String LINKEDIN = "https://www.linkedin.com/in/micha%C5%82-musia%C5%82owicz-553851216/";
+    INSTAGRAM ( "https://www.instagram.com/muuusial_/" ),
+
+    GITHUB  ("https://github.com/micmus4" ),
+
+    FACEBOOK ( "https://www.facebook.com/michalmusialowicz01" ),
+
+    LINKEDIN ( "https://www.linkedin.com/in/micha%C5%82-musia%C5%82owicz-553851216/" );
+
+    private final String link;
+
+    SocialMediaConstants(String link) {
+        this.link = link;
+    }
+
+    public String getLink(){
+        return link;
+    }
+
 }

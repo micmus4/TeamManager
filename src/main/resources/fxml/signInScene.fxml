@@ -10,9 +10,9 @@
     <top>
         <MenuBar id="helpMenuBar">
             <Menu text="Help">
-                <MenuItem fx:id="contactMenuItem" text="Contact" onAction="#hideSignInScene"/>
+                <MenuItem fx:id="contactMenuItem" text="Contact" onAction="#popUpHelpContactSceneOnScreen"/>
                 <SeparatorMenuItem/>
-                <MenuItem text="Information"/>
+                <MenuItem fx:id="informationMenuItem" text="Information" onAction="#popUpHelpInformationSceneOnScreen"/>
             </Menu>
         </MenuBar>
     </top>
