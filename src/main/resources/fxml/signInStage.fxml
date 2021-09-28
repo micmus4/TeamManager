@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="scenes.SignInScene">
+            fx:controller="stages.SignInStage">
 
     <top>
         <MenuBar id="helpMenuBar">
             <Menu text="Help">
-                <MenuItem fx:id="contactMenuItem" text="Contact" onAction="#popUpHelpContactSceneOnScreen"/>
+                <MenuItem fx:id="contactMenuItem" text="Contact" onAction="#popUpHelpContactStageOnScreen"/>
                 <SeparatorMenuItem/>
-                <MenuItem fx:id="informationMenuItem" text="Information" onAction="#popUpHelpInformationSceneOnScreen"/>
+                <MenuItem fx:id="informationMenuItem" text="Information" onAction="#popUpHelpInformationStageOnScreen"/>
             </Menu>
         </MenuBar>
     </top>

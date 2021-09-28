@@ -1,17 +1,17 @@
-package scenes;
+package stages;
 
 import constants.SocialMediaConstants;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import utils.AlertUtils;
-import utils.SceneUtils;
+import utils.StageUtils;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class HelpContactScene
+public class HelpContactStage
 {
 
     @FXML
@@ -19,7 +19,7 @@ public class HelpContactScene
 
     public void initialize()
     {
-        SceneUtils.setProjectVersionLabel( versionLabel );
+        StageUtils.setProjectVersionLabel( versionLabel );
     }
 
     @FXML

@@ -1,15 +1,13 @@
 package start;
 
-import constants.ProjectConstants;
-import constants.SignInSceneConstants;
+import constants.SignInStageConstants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import scenes.SignInScene;
+import stages.SignInStage;
 import utils.AlertUtils;
+import utils.StageUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +26,7 @@ public class Start extends Application {
 
         try
         {
-            SignInScene.setSignInStage( signInStage );
+            SignInStage.setSignInStage( signInStage );
             signInStage.show();
         }
         catch ( NullPointerException e )
@@ -42,13 +40,11 @@ public class Start extends Application {
         Parent root;
         URL urlToFXML;
         URL urlToCSS;
-        URL icon;
 
         try
         {
-            urlToFXML = getClass().getResource( SignInSceneConstants.SIGN_IN_SCENE_RESOURCES_FXML );
-            urlToCSS = getClass().getResource( SignInSceneConstants.SIGN_IN_SCENE_RESOURCES_CSS );
-            icon = getClass().getResource( ProjectConstants.ICON_RESOURCES_FXML );
+            urlToFXML = getClass().getResource( SignInStageConstants.SIGN_IN_SCENE_RESOURCES_FXML );
+            urlToCSS = getClass().getResource( SignInStageConstants.SIGN_IN_SCENE_RESOURCES_CSS );
             root = FXMLLoader.load(  urlToFXML );
         }
         catch ( IOException | NullPointerException e )
@@ -58,15 +54,8 @@ public class Start extends Application {
             return null;
         }
 
-        signInStage.getIcons().add( new Image( icon.toString() ) );
-        signInStage.setTitle( "Sign in" );
-        signInStage.setResizable( false );
-        Scene signInStageScene = new Scene( root, SignInSceneConstants.SIGN_IN_SCENE_HEIGHT, SignInSceneConstants.SIGN_IN_SCENE_WIDTH );
-
-        signInStageScene.getStylesheets().clear();
-        signInStageScene.getStylesheets().add( urlToCSS.toExternalForm() );
-        signInStage.setScene( signInStageScene );
-
-        return signInStage;
+        return StageUtils.createStage( signInStage, "Sign in", false, root, urlToCSS,
+                SignInStageConstants.SIGN_IN_SCENE_HEIGHT,
+                SignInStageConstants.SIGN_IN_SCENE_WIDTH );
     }
 }

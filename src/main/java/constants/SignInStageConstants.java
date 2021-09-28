@@ -2,7 +2,7 @@ package constants;
 
 
 
-public class SignInSceneConstants
+public class SignInStageConstants
 {
 
 
@@ -10,8 +10,8 @@ public class SignInSceneConstants
      * Height and width for SignInScene.
      */
 
-    public static final String SIGN_IN_SCENE_FXML_NAME = "signInScene.fxml";
-    public static final String SIGN_IN_SCENE_CSS_NAME = "signInSceneStyle.css";
+    public static final String SIGN_IN_SCENE_FXML_NAME = "signInStage.fxml";
+    public static final String SIGN_IN_SCENE_CSS_NAME = "signInSceneStage.css";
 
 
 

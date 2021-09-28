@@ -1,16 +1,16 @@
-package scenes;
+package stages;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import utils.SceneUtils;
+import utils.StageUtils;
 
-public class HelpInformationScene
+public class HelpInformationStage
 {
     @FXML
     private Label versionLabel;
 
     public void initialize()
     {
-        SceneUtils.setProjectVersionLabel( versionLabel );
+        StageUtils.setProjectVersionLabel( versionLabel );
     }
 }

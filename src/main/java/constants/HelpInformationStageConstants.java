@@ -1,8 +1,6 @@
 package constants;
 
-import scenes.HelpInformationScene;
-
-public class HelpInformationSceneConstants
+public class HelpInformationStageConstants
 {
     /**
      * Height and width for HelpInformationScene.
@@ -16,8 +14,8 @@ public class HelpInformationSceneConstants
      * Names of FXML/CSS files for HelpInformationScene.
      */
 
-    public static final String HELP_INFORMATION_SCENE_FXML_NAME = "helpInformationScene.fxml";
-    public static final String HELP_INFORMATION_SCENE_CSS_NAME = "helpInformationSceneStyle.css";
+    public static final String HELP_INFORMATION_SCENE_FXML_NAME = "helpInformationStage.fxml";
+    public static final String HELP_INFORMATION_SCENE_CSS_NAME = "helpInformationStageStyle.css";
 
 
     /**

@@ -40,7 +40,7 @@ public class ProjectConstants
 
 
     /**
-     * Relative paths (from resources dir) to icon.
+     * Relative path (from resources dir) to icon.
      */
 
     public static String ICON_RESOURCES_FXML = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +

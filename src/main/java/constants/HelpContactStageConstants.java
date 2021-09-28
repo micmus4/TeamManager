@@ -2,15 +2,15 @@ package constants;
 
 
 
-public class HelpContactSceneConstants
+public class HelpContactStageConstants
 {
 
     /**
      * Height and width for HelpContactScene.
      */
 
-    public static String HELP_CONTACT_SCENE_FXML_NAME = "helpContactScene.fxml";
-    public static final String HELP_CONTACT_SCENE_CSS_NAME = "helpContactSceneStyle.css";
+    public static String HELP_CONTACT_SCENE_FXML_NAME = "helpContactStage.fxml";
+    public static final String HELP_CONTACT_SCENE_CSS_NAME = "helpContactStageStyle.css";
 
 
     /**

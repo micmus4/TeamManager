@@ -7,8 +7,8 @@ module Main {
 
 
 
-    opens scenes to javafx.fxml;
-    exports scenes;
+    opens stages to javafx.fxml;
+    exports stages;
 
     opens start to javafx.fxml;
     exports start;

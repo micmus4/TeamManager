@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.Separator?>
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="scenes.HelpInformationScene">
+            fx:controller="stages.HelpInformationStage">
 
 
     <center>
