@@ -14,11 +14,14 @@ public enum SocialMediaConstants
 
     LINKEDIN ( "https://www.linkedin.com/in/micha%C5%82-musia%C5%82owicz-553851216/" );
 
+
     private final String link;
+
 
     SocialMediaConstants(String link) {
         this.link = link;
     }
+
 
     public String getLink(){
         return link;

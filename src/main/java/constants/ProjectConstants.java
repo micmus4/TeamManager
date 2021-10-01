@@ -12,13 +12,6 @@ public class ProjectConstants
 
 
     /**
-     * String path to project's root directory.
-     */
-
-    public static final String PROJECT_STRING_PATH = System.getProperty( "user.dir" );
-
-
-    /**
      * Current version of Team Manager.
      */
 

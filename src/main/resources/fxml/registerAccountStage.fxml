@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ChoiceBox?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="stages.RegisterAccountStage">
+    <top>
+        <VBox alignment="CENTER">
+            <padding>
+                <Insets top="125"/>
+            </padding>
+            <Label id="creatingAccountInfoLabel" text="Creating account process"/>
+            <Label id="creatingAccountStepsLabel" text="(1/2)"/>
+        </VBox>
+    </top>
+    <center>
+        <HBox alignment="CENTER">
+            <VBox alignment="CENTER">
+                <GridPane hgap="5" vgap="10">
+                    <Label text="First name: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label text="Last name: " GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <Label text="Login: " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <Label text="Password: " GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                    <Label text="Confirm password: " GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                    <Label text="Country: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                    <Label text="E-mail: " GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                    <Label text="Phone number: " GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+
+                    <TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <TextField fx:id="loginField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <PasswordField fx:id="confirmPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                    <ChoiceBox fx:id="countryChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="150"/>
+                    <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                    <TextField fx:id="phoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                </GridPane>
+            </VBox>
+        </HBox>
+    </center>
+    <bottom>
+        <BorderPane>
+            <padding>
+                <Insets right="5" bottom="5"/>
+            </padding>
+            <right>
+                <Label fx:id="versionLabel" id="version"/>
+            </right>
+        </BorderPane>
+    </bottom>
+</BorderPane>

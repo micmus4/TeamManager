@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>pl.musialowicz</groupId>
     <artifactId>TeamManager</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -51,9 +51,6 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
-                <configuration>
-                    <mainClass>stages.Controllers.SignInSceneController</mainClass>
-                </configuration>
             </plugin>
 
             <plugin>

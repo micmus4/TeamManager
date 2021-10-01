@@ -20,7 +20,7 @@ public class Start extends Application {
     }
 
     @Override
-    public void start( Stage signInStage ) throws Exception
+    public void start( Stage signInStage )
     {
         signInStage = createSignInScene( signInStage );
 
@@ -43,8 +43,8 @@ public class Start extends Application {
 
         try
         {
-            urlToFXML = getClass().getResource( SignInStageConstants.SIGN_IN_SCENE_RESOURCES_FXML );
-            urlToCSS = getClass().getResource( SignInStageConstants.SIGN_IN_SCENE_RESOURCES_CSS );
+            urlToFXML = getClass().getResource( SignInStageConstants.SIGN_IN_STAGE_RESOURCES_FXML );
+            urlToCSS = getClass().getResource( SignInStageConstants.SIGN_IN_STAGE_RESOURCES_CSS );
             root = FXMLLoader.load(  urlToFXML );
         }
         catch ( IOException | NullPointerException e )
@@ -55,7 +55,7 @@ public class Start extends Application {
         }
 
         return StageUtils.createStage( signInStage, "Sign in", false, root, urlToCSS,
-                SignInStageConstants.SIGN_IN_SCENE_HEIGHT,
-                SignInStageConstants.SIGN_IN_SCENE_WIDTH );
+                SignInStageConstants.SIGN_IN_STAGE_WIDTH,
+                SignInStageConstants.SIGN_IN_STAGE_HEIGHT );
     }
 }

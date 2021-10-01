@@ -31,7 +31,7 @@
                         <Label id="askAboutAccountTextLabel" text="Don't have account yet?"/>
                     </HBox>
                     <HBox GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2" alignment="CENTER">
-                        <Hyperlink id="registerTextLabel" text="Register"/>
+                        <Hyperlink id="registerTextLabel" fx:id="registerAccountHyperLink" text="Register" onAction="#popUpRegisterAccountStageOnScreen"/>
                     </HBox>
                 </GridPane>
             </HBox>
