@@ -1,4 +1,4 @@
-package stages;
+package stages.help;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

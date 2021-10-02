@@ -1,4 +1,6 @@
-package constants;
+package constants.help;
+
+import constants.ProjectConstants;
 
 public class HelpInformationStageConstants
 {

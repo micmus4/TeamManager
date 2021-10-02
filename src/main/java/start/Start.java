@@ -1,11 +1,11 @@
 package start;
 
-import constants.SignInStageConstants;
+import constants.account.SignInStageConstants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
-import stages.SignInStage;
+import stages.account.SignInStage;
 import utils.AlertUtils;
 import utils.StageUtils;
 

@@ -1,16 +1,16 @@
-package stages;
+package stages.account;
 
-import constants.HelpContactStageConstants;
-import constants.HelpInformationStageConstants;
-import constants.RegisterAccountStageConstants;
-import javafx.event.EventHandler;
+import constants.help.HelpContactStageConstants;
+import constants.help.HelpInformationStageConstants;
+import constants.account.RegisterAccountStageConstants;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import utils.AlertUtils;
 import utils.StageUtils;
 
@@ -26,11 +26,11 @@ public class SignInStage
     @FXML
     private Label versionLabel;
 
-    private Boolean isHelpContactStageOnScreen = false;
+    private final SimpleBooleanProperty isHelpContactStageOnScreen = new SimpleBooleanProperty();
 
-    private Boolean isHelpInformationStageOnScreen = false;
+    private final SimpleBooleanProperty isHelpInformationStageOnScreen = new SimpleBooleanProperty();
 
-    private Boolean isRegisterAccountStageOnScreen = false;
+    private final SimpleBooleanProperty isRegisterAccountStageOnScreen = new SimpleBooleanProperty();
 
     public SignInStage(){}
 
@@ -38,6 +38,9 @@ public class SignInStage
     public void initialize()
     {
         StageUtils.setProjectVersionLabel( versionLabel );
+        isRegisterAccountStageOnScreen.setValue( false );
+        isHelpInformationStageOnScreen.setValue( false );
+        isHelpContactStageOnScreen.setValue( false );
     }
 
 
@@ -120,14 +123,14 @@ public class SignInStage
     @FXML
     private void popUpHelpContactStageOnScreen()
     {
-        if ( !isHelpContactStageOnScreen )
+        if ( !isHelpContactStageOnScreen.get() )
         {
             Stage helpContactStage = createHelpContactStage();
-            boolean isHelpContactStageShown = StageUtils.isStageShown( helpContactStage, signInStage, Modality.NONE );
+            boolean isHelpContactStageShown = StageUtils.isStageShown( helpContactStage, signInStage,
+                                                    Modality.NONE, isHelpContactStageOnScreen );
             if ( isHelpContactStageShown )
             {
-                isHelpContactStageOnScreen = true;
-                helpContactStage.setOnCloseRequest( wE -> isHelpContactStageOnScreen = false );
+                isHelpContactStageOnScreen.set( true );
             }
         }
     }
@@ -136,31 +139,29 @@ public class SignInStage
     @FXML
     private void popUpHelpInformationStageOnScreen()
     {
-        if ( !isHelpInformationStageOnScreen )
+        if ( !isHelpInformationStageOnScreen.get() )
         {
             Stage helpInformationStage = createHelpInformationStage();
-            boolean isHelpInformationStageShown = StageUtils.isStageShown( helpInformationStage, signInStage, Modality.NONE );
+            boolean isHelpInformationStageShown = StageUtils.isStageShown( helpInformationStage, signInStage,
+                                                        Modality.NONE, isHelpInformationStageOnScreen );
             if ( isHelpInformationStageShown )
             {
-                isHelpInformationStageOnScreen = true;
-                helpInformationStage.setOnCloseRequest( wE -> isHelpInformationStageOnScreen = false );
+                isHelpInformationStageOnScreen.set( true );
             }
         }
     }
 
     @FXML
     private void popUpRegisterAccountStageOnScreen(){
-        if ( !isRegisterAccountStageOnScreen )
+        if ( !isRegisterAccountStageOnScreen.get() )
         {
             Stage registerAccountStage = createRegisterAccountStage();
-            boolean isRegisterAccountStageShown = StageUtils.isStageShown( registerAccountStage, signInStage, Modality.WINDOW_MODAL );
+            boolean isRegisterAccountStageShown = StageUtils.isStageShown( registerAccountStage, signInStage,
+                                                        Modality.WINDOW_MODAL, isRegisterAccountStageOnScreen );
             if ( isRegisterAccountStageShown )
             {
-                isRegisterAccountStageOnScreen = true;
-                registerAccountStage.setOnCloseRequest( wE -> isRegisterAccountStageOnScreen = false );
+                isRegisterAccountStageOnScreen.set( true );
             }
         }
     }
-
-
 }

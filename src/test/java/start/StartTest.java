@@ -1,7 +1,7 @@
 package start;
 
 
-import constants.SignInStageConstants;
+import constants.account.SignInStageConstants;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

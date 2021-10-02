@@ -1,6 +1,6 @@
 package stages;
 
-import constants.SocialMediaConstants;
+import constants.help.SocialMediaConstants;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;

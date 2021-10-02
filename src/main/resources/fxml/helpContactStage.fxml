@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="stages.HelpContactStage">
+            fx:controller="stages.help.HelpContactStage">
 
     <center>
         <VBox alignment="CENTER">

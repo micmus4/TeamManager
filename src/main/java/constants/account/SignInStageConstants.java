@@ -1,6 +1,7 @@
-package constants;
+package constants.account;
 
 
+import constants.ProjectConstants;
 
 public class SignInStageConstants
 {
@@ -11,7 +12,7 @@ public class SignInStageConstants
      */
 
     public static final String SIGN_IN_STAGE_FXML_NAME = "signInStage.fxml";
-    public static final String SIGN_IN_STAGE_CSS_NAME = "signInSceneStageStyle.css";
+    public static final String SIGN_IN_STAGE_CSS_NAME = "signInStageStyle.css";
 
 
     /**

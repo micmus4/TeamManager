@@ -1,7 +1,7 @@
 package stages;
 
-import constants.HelpContactStageConstants;
-import constants.HelpInformationStageConstants;
+import constants.help.HelpContactStageConstants;
+import constants.help.HelpInformationStageConstants;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import start.Start;

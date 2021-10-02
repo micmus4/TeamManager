@@ -1,4 +1,6 @@
-package constants;
+package constants.account;
+
+import constants.ProjectConstants;
 
 public class RegisterAccountStageConstants
 {

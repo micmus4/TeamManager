@@ -1,4 +1,4 @@
-package constants;
+package constants.help;
 
 public enum SocialMediaConstants
 {

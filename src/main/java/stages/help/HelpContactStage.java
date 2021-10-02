@@ -1,6 +1,6 @@
-package stages;
+package stages.help;
 
-import constants.SocialMediaConstants;
+import constants.help.SocialMediaConstants;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import utils.AlertUtils;
