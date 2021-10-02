@@ -36,7 +36,22 @@ public class ProjectConstants
      * Relative path (from resources dir) to icon.
      */
 
-    public static String ICON_RESOURCES_FXML = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
+    public static final String ICON_RESOURCES_FXML = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
             ICON_NAME ).replace( "\\", "/" );
+
+
+    /**
+     * Name of .json file containing list of all countries (their code + their name).
+     */
+
+    public static final String COUNTRIES_JSON_NAME = "countries.json";
+
+
+    /**
+     * Relative path (from resources dir) to .json file containing data about world's countries.
+     */
+
+    public static final String COUNTRIES_RESOURCES_JSON = ( ProjectConstants.SEP + "json" + ProjectConstants.SEP +
+            COUNTRIES_JSON_NAME ).replace( "\\", "/" );
 
 }

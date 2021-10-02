@@ -98,7 +98,7 @@ public class StageUtils
      *  - null value, if URL created from stringPathToImage is invalid and doesn't point to image file.
      */
 
-    private static Image transformPathToImageToImageInstance( String stringPathToImage )
+    public static Image transformPathToImageToImageInstance( String stringPathToImage )
     {
         URL urlToImage = StageUtils.class.getResource( stringPathToImage );
         if( urlToImage == null )

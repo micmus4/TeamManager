@@ -9,7 +9,7 @@ public class RegisterAccountStageConstants
      * Height and width for RegisterAccountStage.
      */
     public static final Double REGISTER_ACCOUNT_STAGE_HEIGHT = 600.00D;
-    public static final Double REGISTER_ACCOUNT_STAGE_WIDTH = 400.00D;
+    public static final Double REGISTER_ACCOUNT_STAGE_WIDTH = 500.00D;
 
 
     /**

@@ -1,13 +1,24 @@
 package stages.account;
 
+import constants.ProjectConstants;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import utils.AlertUtils;
 import utils.StageUtils;
+
+import java.io.FileReader;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class RegisterAccountStage
 {
@@ -33,7 +44,7 @@ public class RegisterAccountStage
     private PasswordField confirmPasswordField;
 
     @FXML
-    private ChoiceBox< String > countryChoiceBox;
+    private ComboBox< String > countryComboBox;
 
     @FXML
     private Label versionLabel;
@@ -54,11 +65,15 @@ public class RegisterAccountStage
 
     private ObjectProperty< String > countryValueProperty;
 
+    @FXML
+    private ImageView countryPickStatus;
+
 
     public void initialize()
     {
         StageUtils.setProjectVersionLabel( versionLabel );
         setPropertiesForControls();
+        loadCountriesToChoiceBox();
     }
 
     private void setPropertiesForControls()
@@ -70,7 +85,56 @@ public class RegisterAccountStage
         phoneNumberTextProperty = phoneNumberField.textProperty();
         passwordTextProperty = passwordField.textProperty();
         confirmPasswordTextProperty = confirmPasswordField.textProperty();
-        countryValueProperty = countryChoiceBox.valueProperty();
+        countryValueProperty = countryComboBox.valueProperty();
+
+//        countryValueProperty.addListener((observableValue, s, t1) -> {
+//            if( countryValueProperty.getValue().equals("") || countryValueProperty.getValue() == null )
+//            {
+//                countryPickStatus.setImage( StageUtils.transformPathToImageToImageInstance( "/images/redX.png" ) );
+//            } else {
+//                countryPickStatus.setImage( StageUtils.transformPathToImageToImageInstance( "/images/greenV.png" ) );
+//            }
+//        });
+    }
+
+
+    private void loadCountriesToChoiceBox()
+    {
+        JSONParser parser = new JSONParser();
+        URL urlToJSONFile = getClass().getResource( ProjectConstants.COUNTRIES_RESOURCES_JSON );
+
+        try
+        {
+            if ( urlToJSONFile == null )
+            {
+                throw new NullPointerException();
+            }
+        }
+        catch ( Exception e )
+        {
+            AlertUtils.popUpErrorAlert( e );
+            return;
+        }
+
+
+        ArrayList<String> countriesArrayList = new ArrayList<>();
+        try( FileReader reader = new FileReader( urlToJSONFile.getPath() ) )
+        {
+            Object parsedJson = parser.parse( reader );
+            JSONArray jsonDataArray = (JSONArray) parsedJson;
+
+            jsonDataArray.forEach( country -> {
+                String name = (String) ((JSONObject) country).get( "name" );
+                countriesArrayList.add( name );
+            } );
+        }
+        catch ( Exception e )
+        {
+            AlertUtils.popUpErrorAlert( e );
+            return;
+        }
+
+        countryComboBox.setItems( FXCollections.observableList( countriesArrayList ) );
     }
 
 }
