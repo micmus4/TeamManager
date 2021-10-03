@@ -1,11 +1,14 @@
 package utils;
 
 import constants.ProjectConstants;
+import constants.ImageConstants;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -42,7 +45,7 @@ public class StageUtils
                                      URL cssFile, Double width, Double height )
     {
         Stage newStage = new Stage();
-        newStage.getIcons().add( transformPathToImageToImageInstance( ProjectConstants.ICON_RESOURCES_FXML ) );
+        newStage.getIcons().add( transformPathToImageToImageInstance( ImageConstants.ICON_RESOURCES) );
         newStage.setTitle( title );
         newStage.setResizable( isResizable );
         Scene newScene = new Scene( root, width, height );
@@ -75,7 +78,7 @@ public class StageUtils
     public static Stage createStage ( Stage newStage, String title, Boolean isResizable, Parent root,
                                      URL cssFile, Double width, Double height )
     {
-        newStage.getIcons().add( transformPathToImageToImageInstance( ProjectConstants.ICON_RESOURCES_FXML ) );
+        newStage.getIcons().add( transformPathToImageToImageInstance( ImageConstants.ICON_RESOURCES) );
         newStage.setTitle( title );
         newStage.setResizable( isResizable );
         Scene newScene = new Scene( root, width, height );
@@ -167,6 +170,21 @@ public class StageUtils
     private static void createListenerForAvoidingDuplicateStages( Stage stage, SimpleBooleanProperty isStageOnScreen )
     {
         stage.setOnCloseRequest( wE -> isStageOnScreen.set( false ) );
+    }
+
+
+    public static void setImage( ImageView imageView, String pathToImage )
+    {
+        imageView.setImage( transformPathToImageToImageInstance( pathToImage ) );
+    }
+
+
+    public static void setImageTooltip( String message, ImageView imageView )
+    {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText( message );
+        imageView.setPickOnBounds(true);
+        Tooltip.install( imageView, tooltip );
     }
 
 

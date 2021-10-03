@@ -13,7 +13,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="stages.account.RegisterAccountStage">
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="stages.account.RegisterAccountStage">
     <top>
         <VBox alignment="CENTER">
             <padding>
@@ -28,23 +29,26 @@
             <VBox alignment="CENTER">
                 <GridPane hgap="10" vgap="10">
 
-                    <ImageView GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <ImageView fx:id="loginTooltipImage" GridPane.columnIndex="0" GridPane.rowIndex="2">
                         <image>
                             <Image url="@../images/questionMark.png"/>
                         </image>
                     </ImageView>
 
-                    <ImageView GridPane.columnIndex="0" GridPane.rowIndex="3">
+
+                    <ImageView fx:id="passwordTooltipImage" GridPane.columnIndex="0" GridPane.rowIndex="3">
                         <image>
                             <Image url="@../images/questionMark.png"/>
                         </image>
                     </ImageView>
 
-                    <ImageView GridPane.columnIndex="0" GridPane.rowIndex="6">
+
+                    <ImageView fx:id="emailTooltipImage" GridPane.columnIndex="0" GridPane.rowIndex="6">
                         <image>
                             <Image url="@../images/questionMark.png"/>
                         </image>
                     </ImageView>
+
 
                     <Label text="First name: " GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                     <Label text="Last name: " GridPane.columnIndex="1" GridPane.rowIndex="1"/>
@@ -64,7 +68,8 @@
                     <TextField fx:id="emailField" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
                     <TextField fx:id="phoneNumberField" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
 
-                    <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.columnSpan="2" spacing="15">
+                    <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.columnSpan="2"
+                          spacing="15">
                         <padding>
                             <Insets top="15"/>
                         </padding>
@@ -72,51 +77,51 @@
                         <Button text="Continue" prefWidth="75" disable="true"/>
                     </HBox>
 
-                    <ImageView GridPane.columnIndex="3" GridPane.rowIndex="0">
+                    <ImageView fx:id="firstNameStatus" GridPane.columnIndex="3" GridPane.rowIndex="0">
                         <image>
-                            <Image url="@../images/redX.png"/>
+                            <Image url="@../images/wrong.png"/>
                         </image>
                     </ImageView>
 
-                    <ImageView GridPane.columnIndex="3" GridPane.rowIndex="1">
+                    <ImageView fx:id="lastNameStatus" GridPane.columnIndex="3" GridPane.rowIndex="1">
                         <image>
-                            <Image url="@../images/redX.png"/>
+                            <Image url="@../images/wrong.png"/>
                         </image>
                     </ImageView>
 
-                    <ImageView GridPane.columnIndex="3" GridPane.rowIndex="2">
+                    <ImageView fx:id="loginStatus" GridPane.columnIndex="3" GridPane.rowIndex="2">
                         <image>
-                            <Image url="@../images/redX.png"/>
+                            <Image url="@../images/wrong.png"/>
                         </image>
                     </ImageView>
 
-                    <ImageView GridPane.columnIndex="3" GridPane.rowIndex="3">
+                    <ImageView fx:id="passwordStatus" GridPane.columnIndex="3" GridPane.rowIndex="3">
                         <image>
-                            <Image url="@../images/redX.png"/>
+                            <Image url="@../images/wrong.png"/>
                         </image>
                     </ImageView>
 
-                    <ImageView GridPane.columnIndex="3" GridPane.rowIndex="4">
+                    <ImageView fx:id="confirmPasswordStatus" GridPane.columnIndex="3" GridPane.rowIndex="4">
                         <image>
-                            <Image url="@../images/redX.png"/>
+                            <Image url="@../images/wrong.png"/>
                         </image>
                     </ImageView>
 
-                    <ImageView fx:id="countryPickStatus" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                    <ImageView fx:id="countryStatus" GridPane.columnIndex="3" GridPane.rowIndex="5">
                         <image>
-                            <Image url="@../images/redX.png"/>
+                            <Image url="@../images/wrong.png"/>
                         </image>
                     </ImageView>
 
-                    <ImageView GridPane.columnIndex="3" GridPane.rowIndex="6">
+                    <ImageView fx:id="emailStatus" GridPane.columnIndex="3" GridPane.rowIndex="6">
                         <image>
-                            <Image url="@../images/redX.png"/>
+                            <Image url="@../images/wrong.png"/>
                         </image>
                     </ImageView>
 
-                    <ImageView GridPane.columnIndex="3" GridPane.rowIndex="7">
+                    <ImageView fx:id="phoneNumberStatus" GridPane.columnIndex="3" GridPane.rowIndex="7">
                         <image>
-                            <Image url="@../images/redX.png"/>
+                            <Image url="@../images/wrong.png"/>
                         </image>
                     </ImageView>
 

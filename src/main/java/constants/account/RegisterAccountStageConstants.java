@@ -28,5 +28,17 @@ public class RegisterAccountStageConstants
             REGISTER_ACCOUNT_STAGE_FXML_NAME).replace( "\\", "/" );
     public static String REGISTER_ACCOUNT_STAGE_RESOURCES_CSS = ( ProjectConstants.SEP + "css" + ProjectConstants.SEP +
             REGISTER_ACCOUNT_STAGE_CSS_NAME).replace( "\\", "/" );
+
+
+    /**
+     * Tooltip messages for login, password and email tooltips.
+     */
+    public static final String REGISTER_ACCOUNT_STAGE_LOGIN_TOOLTIP_MESSAGE = "Login:\n\t- from 8 to 20 characters" +
+            "\n\t- no special characters";
+    public static final String REGISTER_ACCOUNT_STAGE_PASSWORD_TOOLTIP_MESSAGE = "Password:\n\t- must have from 8 to 20" +
+            " characters\n\t- at least one capital letter\n\t- at least one small letter\n\t- at least one digit\n\t- at" +
+            " least one special character.";
+    public static final String REGISTER_ACCOUNT_STAGE_EMAIL_TOOLTIP_MESSAGE = "Email:\n\t- must have at least one '@'\n\t" +
+            "- must have at least one '.'";
 }
 

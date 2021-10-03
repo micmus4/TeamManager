@@ -1,24 +1,26 @@
 package stages.account;
 
 import constants.ProjectConstants;
+import constants.account.RegisterAccountStageConstants;
+import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import utils.AlertUtils;
 import utils.StageUtils;
+import validation.RegisterAccountValidation;
 
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class RegisterAccountStage
 {
@@ -66,7 +68,37 @@ public class RegisterAccountStage
     private ObjectProperty< String > countryValueProperty;
 
     @FXML
-    private ImageView countryPickStatus;
+    private ImageView firstNameStatus;
+
+    @FXML
+    private ImageView lastNameStatus;
+
+    @FXML
+    private ImageView loginStatus;
+
+    @FXML
+    private ImageView passwordStatus;
+
+    @FXML
+    private ImageView confirmPasswordStatus;
+
+    @FXML
+    private ImageView countryStatus;
+
+    @FXML
+    private ImageView emailStatus;
+
+    @FXML
+    private ImageView phoneNumberStatus;
+
+    @FXML
+    private ImageView loginTooltipImage;
+
+    @FXML
+    private ImageView passwordTooltipImage;
+
+    @FXML
+    private ImageView emailTooltipImage;
 
 
     public void initialize()
@@ -74,7 +106,15 @@ public class RegisterAccountStage
         StageUtils.setProjectVersionLabel( versionLabel );
         setPropertiesForControls();
         loadCountriesToChoiceBox();
+        setTooltips();
+
+        LinkedHashMap<Observable, ImageView> propertyToImageMap = createMapForValidation();
+        ArrayList<Observable> properties = new ArrayList<>( propertyToImageMap.keySet() );
+
+        RegisterAccountValidation registerValidation = new RegisterAccountValidation( propertyToImageMap, properties );
+        registerValidation.activateValidationForRegistrationProperties();
     }
+
 
     private void setPropertiesForControls()
     {
@@ -86,15 +126,6 @@ public class RegisterAccountStage
         passwordTextProperty = passwordField.textProperty();
         confirmPasswordTextProperty = confirmPasswordField.textProperty();
         countryValueProperty = countryComboBox.valueProperty();
-
-//        countryValueProperty.addListener((observableValue, s, t1) -> {
-//            if( countryValueProperty.getValue().equals("") || countryValueProperty.getValue() == null )
-//            {
-//                countryPickStatus.setImage( StageUtils.transformPathToImageToImageInstance( "/images/redX.png" ) );
-//            } else {
-//                countryPickStatus.setImage( StageUtils.transformPathToImageToImageInstance( "/images/greenV.png" ) );
-//            }
-//        });
     }
 
 
@@ -135,6 +166,30 @@ public class RegisterAccountStage
         }
 
         countryComboBox.setItems( FXCollections.observableList( countriesArrayList ) );
+    }
+
+
+    private LinkedHashMap< Observable, ImageView > createMapForValidation()
+    {
+        LinkedHashMap< Observable, ImageView > map = new LinkedHashMap<>();
+
+        map.put( firstNameTextProperty, firstNameStatus );
+        map.put( lastNameTextProperty, lastNameStatus );
+        map.put( loginTextProperty, loginStatus );
+        map.put( passwordTextProperty, passwordStatus );
+        map.put( confirmPasswordTextProperty, confirmPasswordStatus );
+        map.put( countryValueProperty, countryStatus );
+        map.put( emailTextProperty, emailStatus );
+        map.put( phoneNumberTextProperty, phoneNumberStatus );
+
+        return map;
+    }
+
+    private void setTooltips()
+    {
+        StageUtils.setImageTooltip( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_LOGIN_TOOLTIP_MESSAGE, loginTooltipImage );
+        StageUtils.setImageTooltip( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_PASSWORD_TOOLTIP_MESSAGE, passwordTooltipImage );
+        StageUtils.setImageTooltip( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_EMAIL_TOOLTIP_MESSAGE, emailTooltipImage );
     }
 
 }

@@ -26,21 +26,6 @@ public class ProjectConstants
 
 
     /**
-     * Icon of all windows name.
-     */
-
-    public static final String ICON_NAME = "footballIcon.png";
-
-
-    /**
-     * Relative path (from resources dir) to icon.
-     */
-
-    public static final String ICON_RESOURCES_FXML = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
-            ICON_NAME ).replace( "\\", "/" );
-
-
-    /**
      * Name of .json file containing list of all countries (their code + their name).
      */
 
