@@ -6,6 +6,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import stages.help.HelpInformationStage;
 import utils.StageUtils;
 
 import java.util.ArrayList;
@@ -13,6 +16,9 @@ import java.util.LinkedHashMap;
 
 public class RegisterAccountValidation
 {
+    private static final Logger LOGGER = LogManager.getLogger( RegisterAccountValidation.class );
+
+
     private final StringProperty firstNameTextProperty;
 
     private final StringProperty lastNameTextProperty;
@@ -75,6 +81,8 @@ public class RegisterAccountValidation
         phoneNumberTextProperty = (StringProperty) properties.get( 7 );
         phoneNumberStatus = propertyToImageMap.get( phoneNumberTextProperty );
 
+        LOGGER.info( "RegisterAccountValidation properties initialized." );
+
     }
 
 
@@ -82,6 +90,7 @@ public class RegisterAccountValidation
     {
         createValidationForNameProperties( firstNameTextProperty, firstNameStatus );
         createValidationForNameProperties( lastNameTextProperty, lastNameStatus );
+        LOGGER.info( "Activated validations for registration properties." );
     }
 
 
@@ -98,6 +107,7 @@ public class RegisterAccountValidation
                 StageUtils.setImage( status, ImageConstants.CORRECT_RESOURCES );
             }
         } );
+        LOGGER.info( "Created listener for validation of " + property.getName() );
     }
 
 

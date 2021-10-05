@@ -11,11 +11,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import stages.help.HelpInformationStage;
 
 import java.net.URL;
 
+
 public class StageUtils
 {
+
+    private static final Logger LOGGER = LogManager.getLogger( StageUtils.class );
+
     /**
      * Sets every Stage's bottom-right corner Label to display text about current project version.
      *
@@ -24,6 +31,7 @@ public class StageUtils
 
     public static void setProjectVersionLabel ( Label versionLabel )
     {
+        LOGGER.info( "Setting project version label" );
         versionLabel.setText( ProjectConstants.VERSION_INFO );
     }
 
@@ -44,6 +52,7 @@ public class StageUtils
     public static Stage createStage ( String title, Boolean isResizable, Parent root,
                                      URL cssFile, Double width, Double height )
     {
+        LOGGER.info( "Creating new stage." );
         Stage newStage = new Stage();
         newStage.getIcons().add( transformPathToImageToImageInstance( ImageConstants.ICON_RESOURCES) );
         newStage.setTitle( title );
@@ -78,6 +87,7 @@ public class StageUtils
     public static Stage createStage ( Stage newStage, String title, Boolean isResizable, Parent root,
                                      URL cssFile, Double width, Double height )
     {
+        LOGGER.info( "Creating new stage." );
         newStage.getIcons().add( transformPathToImageToImageInstance( ImageConstants.ICON_RESOURCES) );
         newStage.setTitle( title );
         newStage.setResizable( isResizable );
@@ -103,11 +113,14 @@ public class StageUtils
 
     public static Image transformPathToImageToImageInstance( String stringPathToImage )
     {
+        LOGGER.info( "Transforming " + stringPathToImage + " to Image instance." );
         URL urlToImage = StageUtils.class.getResource( stringPathToImage );
         if( urlToImage == null )
         {
+            LOGGER.warn( "Couldn't create URL from " + stringPathToImage, " there will be no image." );
             return null;
         }
+        LOGGER.info( stringPathToImage + " was successfully transformed to Image instance." );
         return new Image( urlToImage.toString() );
     }
 
@@ -137,6 +150,7 @@ public class StageUtils
         {
             if ( childStage == null )
             {
+                LOGGER.error( "Failed to created " + childStage.getClass().getSimpleName() );
                 throw new NullPointerException();
             }
         }
@@ -169,18 +183,23 @@ public class StageUtils
 
     private static void createListenerForAvoidingDuplicateStages( Stage stage, SimpleBooleanProperty isStageOnScreen )
     {
-        stage.setOnCloseRequest( wE -> isStageOnScreen.set( false ) );
+        stage.setOnCloseRequest( wE -> {
+            isStageOnScreen.set( false );
+            LOGGER.info( "Closing " + stage.getClass().getSimpleName() );
+        });
     }
 
 
     public static void setImage( ImageView imageView, String pathToImage )
     {
+        LOGGER.info("Setting Image ");
         imageView.setImage( transformPathToImageToImageInstance( pathToImage ) );
     }
 
 
     public static void setImageTooltip( String message, ImageView imageView )
     {
+        LOGGER.info( "Set Image's Tooltip" );
         Tooltip tooltip = new Tooltip();
         tooltip.setText( message );
         imageView.setPickOnBounds(true);

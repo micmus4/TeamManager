@@ -11,6 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import start.Start;
 import utils.AlertUtils;
 import utils.StageUtils;
 
@@ -20,6 +23,8 @@ import java.net.URL;
 
 public class SignInStage
 {
+
+    private static final Logger LOGGER = LogManager.getLogger( SignInStage.class );
 
     private static Stage signInStage;
 
@@ -37,6 +42,7 @@ public class SignInStage
 
     public void initialize()
     {
+        LOGGER.info( "Initializing SignInStage properties" );
         StageUtils.setProjectVersionLabel( versionLabel );
         isRegisterAccountStageOnScreen.setValue( false );
         isHelpInformationStageOnScreen.setValue( false );
@@ -61,13 +67,16 @@ public class SignInStage
             urlToFXML = getClass().getResource( HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_FXML );
             urlToCSS = getClass().getResource( HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_CSS );
             root = FXMLLoader.load( urlToFXML );
+            LOGGER.info( "HelpContactStage loaded" );
         }
         catch ( IOException | NullPointerException e )
         {
+            LOGGER.error( "HelpContactStage failed to show on screen." );
             AlertUtils.popUpErrorAlert( e );
             return null;
         }
 
+        LOGGER.info( "Creating HelpContactStage." );
         return StageUtils.createStage( "Contact", false, root, urlToCSS,
                 HelpContactStageConstants.HELP_CONTACT_STAGE_WIDTH,
                 HelpContactStageConstants.HELP_CONTACT_STAGE_HEIGHT );
@@ -85,13 +94,16 @@ public class SignInStage
             urlToFXML = getClass().getResource( HelpInformationStageConstants.HELP_INFORMATION_STAGE_RESOURCES_FXML );
             urlToCSS = getClass().getResource(  HelpInformationStageConstants.HELP_INFORMATION_STAGE_RESOURCES_CSS );
             root = FXMLLoader.load( urlToFXML );
+            LOGGER.info( "HelpInformationStage loaded." );
         }
         catch ( IOException | NullPointerException e )
         {
+            LOGGER.error( e.getClass().getSimpleName() + " thrown while initializing HelpInformationStage." );
             AlertUtils.popUpErrorAlert( e );
             return null;
         }
 
+        LOGGER.info( "Creating HelpInformationStage." );
         return StageUtils.createStage( "Information", false, root, urlToCSS,
                 HelpInformationStageConstants.HELP_INFORMATION_STAGE_WIDTH,
                 HelpInformationStageConstants.HELP_INFORMATION_STAGE_HEIGHT );
@@ -108,13 +120,16 @@ public class SignInStage
             urlToFXML = getClass().getResource( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_RESOURCES_FXML );
             urlToCSS = getClass().getResource( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_RESOURCES_CSS );
             root = FXMLLoader.load( urlToFXML );
+            LOGGER.info( "RegisterAccountStage loaded." );
         }
         catch ( IOException | NullPointerException e )
         {
+            LOGGER.error( e.getClass().getSimpleName() + " thrown while initializing RegisterAccountStage." );
             AlertUtils.popUpErrorAlert( e );
             return null;
         }
 
+        LOGGER.info( "Creating RegisterAccountStage." );
         return StageUtils.createStage( "Register account", false, root, urlToCSS,
                 RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_WIDTH,
                 RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_HEIGHT );
@@ -130,6 +145,7 @@ public class SignInStage
                                                     Modality.NONE, isHelpContactStageOnScreen );
             if ( isHelpContactStageShown )
             {
+                LOGGER.info( "HelpContactStage shown on the screen." );
                 isHelpContactStageOnScreen.set( true );
             }
         }
@@ -146,6 +162,7 @@ public class SignInStage
                                                         Modality.NONE, isHelpInformationStageOnScreen );
             if ( isHelpInformationStageShown )
             {
+                LOGGER.info( "HelpInformationStage shown on the screen." );
                 isHelpInformationStageOnScreen.set( true );
             }
         }
@@ -160,6 +177,7 @@ public class SignInStage
                                                         Modality.WINDOW_MODAL, isRegisterAccountStageOnScreen );
             if ( isRegisterAccountStageShown )
             {
+                LOGGER.info( "RegisterAccountStage shown on the screen." );
                 isRegisterAccountStageOnScreen.set( true );
             }
         }

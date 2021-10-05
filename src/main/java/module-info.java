@@ -4,6 +4,8 @@ module Main {
     requires javafx.fxml;
     requires java.desktop;
     requires json.simple;
+    requires org.apache.logging.log4j;
+    requires org.apache.logging.log4j.core;
 
 
     opens start to javafx.fxml, json.simple;

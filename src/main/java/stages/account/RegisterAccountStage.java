@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,6 +26,9 @@ import java.util.LinkedHashMap;
 
 public class RegisterAccountStage
 {
+
+    private static final Logger LOGGER = LogManager.getLogger( RegisterAccountStage.class );
+
     @FXML
     private TextField firstNameField;
 
@@ -103,6 +108,7 @@ public class RegisterAccountStage
 
     public void initialize()
     {
+        LOGGER.info( "Initializing RegisterAccountStage properties" );
         StageUtils.setProjectVersionLabel( versionLabel );
         setPropertiesForControls();
         loadCountriesToChoiceBox();
@@ -111,6 +117,7 @@ public class RegisterAccountStage
         LinkedHashMap<Observable, ImageView> propertyToImageMap = createMapForValidation();
         ArrayList<Observable> properties = new ArrayList<>( propertyToImageMap.keySet() );
 
+        LOGGER.info( "Creating RegisterAccountValidation instance to validate signing up." );
         RegisterAccountValidation registerValidation = new RegisterAccountValidation( propertyToImageMap, properties );
         registerValidation.activateValidationForRegistrationProperties();
     }
@@ -131,6 +138,7 @@ public class RegisterAccountStage
 
     private void loadCountriesToChoiceBox()
     {
+        LOGGER.info( "Parsing countries data from JSON." );
         JSONParser parser = new JSONParser();
         URL urlToJSONFile = getClass().getResource( ProjectConstants.COUNTRIES_RESOURCES_JSON );
 
@@ -138,11 +146,13 @@ public class RegisterAccountStage
         {
             if ( urlToJSONFile == null )
             {
+                LOGGER.warn( "No JSON file found." );
                 throw new NullPointerException();
             }
         }
         catch ( Exception e )
         {
+            LOGGER.error( e.getClass().getSimpleName() + ", couldn't parse JSON" );
             AlertUtils.popUpErrorAlert( e );
             return;
         }
@@ -151,6 +161,7 @@ public class RegisterAccountStage
         ArrayList<String> countriesArrayList = new ArrayList<>();
         try( FileReader reader = new FileReader( urlToJSONFile.getPath() ) )
         {
+            LOGGER.info( "Reading from JSON." );
             Object parsedJson = parser.parse( reader );
             JSONArray jsonDataArray = (JSONArray) parsedJson;
 
@@ -161,10 +172,12 @@ public class RegisterAccountStage
         }
         catch ( Exception e )
         {
+            LOGGER.error( e.getClass().getSimpleName() + " while parsing JSON." );
             AlertUtils.popUpErrorAlert( e );
             return;
         }
 
+        LOGGER.info( "Setting countries for ComboBox" );
         countryComboBox.setItems( FXCollections.observableList( countriesArrayList ) );
     }
 
@@ -190,6 +203,7 @@ public class RegisterAccountStage
         StageUtils.setImageTooltip( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_LOGIN_TOOLTIP_MESSAGE, loginTooltipImage );
         StageUtils.setImageTooltip( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_PASSWORD_TOOLTIP_MESSAGE, passwordTooltipImage );
         StageUtils.setImageTooltip( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_EMAIL_TOOLTIP_MESSAGE, emailTooltipImage );
+        LOGGER.info( "Setting tooltips" );
     }
 
 }
