@@ -1,6 +1,6 @@
 package start;
 
-import constants.account.SignInStageConstants;
+import constants.account.SignInConstants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -50,8 +50,8 @@ public class Start extends Application {
 
         try
         {
-            urlToFXML = getClass().getResource( SignInStageConstants.SIGN_IN_STAGE_RESOURCES_FXML );
-            urlToCSS = getClass().getResource( SignInStageConstants.SIGN_IN_STAGE_RESOURCES_CSS );
+            urlToFXML = getClass().getResource( SignInConstants.SIGN_IN_STAGE_RESOURCES_FXML );
+            urlToCSS = getClass().getResource( SignInConstants.SIGN_IN_STAGE_RESOURCES_CSS );
             root = FXMLLoader.load(  urlToFXML );
             LOGGER.info( "SignInStage loaded." );
         }
@@ -65,7 +65,7 @@ public class Start extends Application {
 
         LOGGER.info( "Creating SignInStage." );
         return StageUtils.createStage( signInStage, "Sign in", false, root, urlToCSS,
-                SignInStageConstants.SIGN_IN_STAGE_WIDTH,
-                SignInStageConstants.SIGN_IN_STAGE_HEIGHT );
+                SignInConstants.SIGN_IN_STAGE_WIDTH,
+                SignInConstants.SIGN_IN_STAGE_HEIGHT );
     }
 }

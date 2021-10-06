@@ -3,7 +3,7 @@ package constants.account;
 
 import constants.ProjectConstants;
 
-public class SignInStageConstants
+public class SignInConstants
 {
 
 

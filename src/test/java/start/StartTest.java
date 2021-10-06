@@ -1,7 +1,7 @@
 package start;
 
 
-import constants.account.SignInStageConstants;
+import constants.account.SignInConstants;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -23,11 +23,11 @@ public class StartTest
     @BeforeAll
     public static void initialize()
     {
-        validURLToSignInSceneFXML = Start.class.getResource( SignInStageConstants.SIGN_IN_STAGE_RESOURCES_FXML);
+        validURLToSignInSceneFXML = Start.class.getResource( SignInConstants.SIGN_IN_STAGE_RESOURCES_FXML);
         invalidURLToSignInSceneFXML = Start.class.getResource( "Some random invalid path." );
         fxmlFile = new File( validURLToSignInSceneFXML.getFile() );
 
-        validURLToSignInSceneCSS = Start.class.getResource( SignInStageConstants.SIGN_IN_STAGE_RESOURCES_CSS);
+        validURLToSignInSceneCSS = Start.class.getResource( SignInConstants.SIGN_IN_STAGE_RESOURCES_CSS);
         invalidURLToSignInSceneCSS = Start.class.getResource( "Some random invalid path." );
         cssFile = new File( validURLToSignInSceneCSS.getFile() );
     }
@@ -38,49 +38,49 @@ public class StartTest
     public void fxmlFileCorrectness()
     {
         assertThrows( NullPointerException.class, () -> invalidURLToSignInSceneFXML.getPath(),
-                "Should throw NullPointerException, invalid path to " + SignInStageConstants.SIGN_IN_STAGE_FXML_NAME);
+                "Should throw NullPointerException, invalid path to " + SignInConstants.SIGN_IN_STAGE_FXML_NAME);
 
         assertDoesNotThrow( () -> validURLToSignInSceneFXML.getPath(),
-                "Correct path to " + SignInStageConstants.SIGN_IN_STAGE_FXML_NAME + ", shouldn't throw any exceptions." );
+                "Correct path to " + SignInConstants.SIGN_IN_STAGE_FXML_NAME + ", shouldn't throw any exceptions." );
 
         assertTrue( fxmlFile.exists(),
-                SignInStageConstants.SIGN_IN_STAGE_FXML_NAME + " should exist" );
+                SignInConstants.SIGN_IN_STAGE_FXML_NAME + " should exist" );
 
         assertFalse( fxmlFile.isDirectory(),
-                SignInStageConstants.SIGN_IN_STAGE_FXML_NAME + " shouldn't be a directory.");
+                SignInConstants.SIGN_IN_STAGE_FXML_NAME + " shouldn't be a directory.");
 
         assertTrue( fxmlFile.canRead(),
-                SignInStageConstants.SIGN_IN_STAGE_FXML_NAME + " should be readable." );
+                SignInConstants.SIGN_IN_STAGE_FXML_NAME + " should be readable." );
 
         assertTrue( fxmlFile.canWrite(),
-                SignInStageConstants.SIGN_IN_STAGE_FXML_NAME + " should be writeable." );
+                SignInConstants.SIGN_IN_STAGE_FXML_NAME + " should be writeable." );
 
         assertTrue( fxmlFile.canExecute(),
-                SignInStageConstants.SIGN_IN_STAGE_FXML_NAME + " should be executable." );
+                SignInConstants.SIGN_IN_STAGE_FXML_NAME + " should be executable." );
     }
 
     @Test
     public void cssFileCorrectness()
     {
         assertThrows( NullPointerException.class, () -> invalidURLToSignInSceneCSS.getPath(),
-                "Should throw NullPointerException, invalid path to " + SignInStageConstants.SIGN_IN_STAGE_RESOURCES_CSS);
+                "Should throw NullPointerException, invalid path to " + SignInConstants.SIGN_IN_STAGE_RESOURCES_CSS);
 
         assertDoesNotThrow( () -> validURLToSignInSceneCSS.getPath(),
-                "Correct path to " + SignInStageConstants.SIGN_IN_STAGE_RESOURCES_CSS + ", shouldn't throw any exceptions." );
+                "Correct path to " + SignInConstants.SIGN_IN_STAGE_RESOURCES_CSS + ", shouldn't throw any exceptions." );
 
         assertTrue( cssFile.exists(),
-                SignInStageConstants.SIGN_IN_STAGE_RESOURCES_CSS + " should exist" );
+                SignInConstants.SIGN_IN_STAGE_RESOURCES_CSS + " should exist" );
 
         assertFalse( cssFile.isDirectory(),
-                SignInStageConstants.SIGN_IN_STAGE_RESOURCES_CSS + " shouldn't be a directory.");
+                SignInConstants.SIGN_IN_STAGE_RESOURCES_CSS + " shouldn't be a directory.");
 
         assertTrue( cssFile.canRead(),
-                SignInStageConstants.SIGN_IN_STAGE_RESOURCES_CSS + " should be readable." );
+                SignInConstants.SIGN_IN_STAGE_RESOURCES_CSS + " should be readable." );
 
         assertTrue( cssFile.canWrite(),
-                SignInStageConstants.SIGN_IN_STAGE_RESOURCES_CSS + " should be writeable." );
+                SignInConstants.SIGN_IN_STAGE_RESOURCES_CSS + " should be writeable." );
 
         assertTrue( cssFile.canExecute(),
-                SignInStageConstants.SIGN_IN_STAGE_RESOURCES_CSS + " should be executable." );
+                SignInConstants.SIGN_IN_STAGE_RESOURCES_CSS + " should be executable." );
     }
 }

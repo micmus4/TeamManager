@@ -3,7 +3,7 @@ package constants.help;
 
 import constants.ProjectConstants;
 
-public class HelpContactStageConstants
+public class HelpContactConstants
 {
 
     /**

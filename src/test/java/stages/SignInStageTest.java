@@ -1,7 +1,7 @@
 package stages;
 
-import constants.help.HelpContactStageConstants;
-import constants.help.HelpInformationStageConstants;
+import constants.help.HelpContactConstants;
+import constants.help.HelpInformationConstants;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import start.Start;
@@ -38,19 +38,19 @@ class SignInStageTest
     @BeforeAll
     public static void initialize()
     {
-        validURLToHelpContactSceneFXML = Start.class.getResource( HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_FXML);
+        validURLToHelpContactSceneFXML = Start.class.getResource( HelpContactConstants.HELP_CONTACT_STAGE_RESOURCES_FXML);
         invalidURLToHelpContactSceneFXML = Start.class.getResource( "Some random invalid path." );
         helpContactFXMLFile = new File( validURLToHelpContactSceneFXML.getFile() );
 
-        validURLToHelpContactSceneCSS = Start.class.getResource( HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_CSS);
+        validURLToHelpContactSceneCSS = Start.class.getResource( HelpContactConstants.HELP_CONTACT_STAGE_RESOURCES_CSS);
         invalidURLToHelpContactSceneCSS = Start.class.getResource( "Some random invalid path." );
         helpContactCSSFile = new File( validURLToHelpContactSceneCSS.getFile() );
 
-        validURLToHelpInformationSceneFXML = Start.class.getResource( HelpInformationStageConstants.HELP_INFORMATION_STAGE_RESOURCES_FXML);
+        validURLToHelpInformationSceneFXML = Start.class.getResource( HelpInformationConstants.HELP_INFORMATION_STAGE_RESOURCES_FXML);
         invalidURLToHelpInformationSceneFXML = Start.class.getResource( "Some random invalid path." );
         helpInformationFXMLFile = new File( validURLToHelpInformationSceneFXML.getFile() );
 
-        validURLToHelpInformationSceneCSS = Start.class.getResource( HelpInformationStageConstants.HELP_INFORMATION_STAGE_RESOURCES_CSS);
+        validURLToHelpInformationSceneCSS = Start.class.getResource( HelpInformationConstants.HELP_INFORMATION_STAGE_RESOURCES_CSS);
         invalidURLToHelpInformationSceneCSS = Start.class.getResource( "Some random invalid path." );
         helpInformationCSSFile = new File( validURLToHelpInformationSceneCSS.getFile() );
     }
@@ -60,50 +60,50 @@ class SignInStageTest
     public void helpContactSceneFXMLFileCorrectness()
     {
         assertThrows( NullPointerException.class, () -> invalidURLToHelpContactSceneFXML.getPath(),
-                "Should throw NullPointerException, invalid path to " + HelpContactStageConstants.HELP_CONTACT_STAGE_FXML_NAME);
+                "Should throw NullPointerException, invalid path to " + HelpContactConstants.HELP_CONTACT_STAGE_FXML_NAME);
 
         assertDoesNotThrow( () -> validURLToHelpContactSceneFXML.getPath(),
-                "Correct path to " + HelpContactStageConstants.HELP_CONTACT_STAGE_FXML_NAME + ", shouldn't throw any exceptions." );
+                "Correct path to " + HelpContactConstants.HELP_CONTACT_STAGE_FXML_NAME + ", shouldn't throw any exceptions." );
 
         assertTrue( helpContactFXMLFile.exists(),
-                HelpContactStageConstants.HELP_CONTACT_STAGE_FXML_NAME + " should exist" );
+                HelpContactConstants.HELP_CONTACT_STAGE_FXML_NAME + " should exist" );
 
         assertFalse( helpContactFXMLFile.isDirectory(),
-                HelpContactStageConstants.HELP_CONTACT_STAGE_FXML_NAME + " shouldn't be a directory.");
+                HelpContactConstants.HELP_CONTACT_STAGE_FXML_NAME + " shouldn't be a directory.");
 
         assertTrue( helpContactFXMLFile.canRead(),
-                HelpContactStageConstants.HELP_CONTACT_STAGE_FXML_NAME + " should be readable." );
+                HelpContactConstants.HELP_CONTACT_STAGE_FXML_NAME + " should be readable." );
 
         assertTrue( helpContactFXMLFile.canWrite(),
-                HelpContactStageConstants.HELP_CONTACT_STAGE_FXML_NAME + " should be writeable." );
+                HelpContactConstants.HELP_CONTACT_STAGE_FXML_NAME + " should be writeable." );
 
         assertTrue( helpContactFXMLFile.canExecute(),
-                HelpContactStageConstants.HELP_CONTACT_STAGE_FXML_NAME + " should be executable." );
+                HelpContactConstants.HELP_CONTACT_STAGE_FXML_NAME + " should be executable." );
     }
 
     @Test
     public void helpContactSceneCSSFileCorrectness()
     {
         assertThrows( NullPointerException.class, () -> invalidURLToHelpContactSceneCSS.getPath(),
-                "Should throw NullPointerException, invalid path to " + HelpContactStageConstants.HELP_CONTACT_STAGE_CSS_NAME);
+                "Should throw NullPointerException, invalid path to " + HelpContactConstants.HELP_CONTACT_STAGE_CSS_NAME);
 
         assertDoesNotThrow( () -> validURLToHelpContactSceneCSS.getPath(),
-                "Correct path to " + HelpContactStageConstants.HELP_CONTACT_STAGE_CSS_NAME + ", shouldn't throw any exceptions." );
+                "Correct path to " + HelpContactConstants.HELP_CONTACT_STAGE_CSS_NAME + ", shouldn't throw any exceptions." );
 
         assertTrue( helpContactCSSFile.exists(),
-                HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_CSS + " should exist" );
+                HelpContactConstants.HELP_CONTACT_STAGE_RESOURCES_CSS + " should exist" );
 
         assertFalse( helpContactCSSFile.isDirectory(),
-                HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_CSS + " shouldn't be a directory.");
+                HelpContactConstants.HELP_CONTACT_STAGE_RESOURCES_CSS + " shouldn't be a directory.");
 
         assertTrue( helpContactCSSFile.canRead(),
-                HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_CSS + " should be readable." );
+                HelpContactConstants.HELP_CONTACT_STAGE_RESOURCES_CSS + " should be readable." );
 
         assertTrue( helpContactCSSFile.canWrite(),
-                HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_CSS + " should be writeable." );
+                HelpContactConstants.HELP_CONTACT_STAGE_RESOURCES_CSS + " should be writeable." );
 
         assertTrue( helpContactCSSFile.canExecute(),
-                HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_CSS + " should be executable." );
+                HelpContactConstants.HELP_CONTACT_STAGE_RESOURCES_CSS + " should be executable." );
     }
 
     @Test
@@ -111,26 +111,26 @@ class SignInStageTest
     {
         assertThrows( NullPointerException.class, () -> invalidURLToHelpInformationSceneFXML.getPath(),
                 "Should throw NullPointerException, invalid path to " +
-                        HelpInformationStageConstants.HELP_INFORMATION_STAGE_FXML_NAME);
+                        HelpInformationConstants.HELP_INFORMATION_STAGE_FXML_NAME);
 
         assertDoesNotThrow( () -> validURLToHelpInformationSceneFXML.getPath(),
-                "Correct path to " + HelpInformationStageConstants.HELP_INFORMATION_STAGE_FXML_NAME
+                "Correct path to " + HelpInformationConstants.HELP_INFORMATION_STAGE_FXML_NAME
                         + ", shouldn't throw any exceptions." );
 
         assertTrue( helpInformationFXMLFile.exists(),
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_FXML_NAME + " should exist" );
+                HelpInformationConstants.HELP_INFORMATION_STAGE_FXML_NAME + " should exist" );
 
         assertFalse( helpInformationFXMLFile.isDirectory(),
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_FXML_NAME + " shouldn't be a directory.");
+                HelpInformationConstants.HELP_INFORMATION_STAGE_FXML_NAME + " shouldn't be a directory.");
 
         assertTrue( helpInformationFXMLFile.canRead(),
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_FXML_NAME + " should be readable." );
+                HelpInformationConstants.HELP_INFORMATION_STAGE_FXML_NAME + " should be readable." );
 
         assertTrue( helpInformationFXMLFile.canWrite(),
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_FXML_NAME + " should be writeable." );
+                HelpInformationConstants.HELP_INFORMATION_STAGE_FXML_NAME + " should be writeable." );
 
         assertTrue( helpInformationFXMLFile.canExecute(),
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_FXML_NAME + " should be executable." );
+                HelpInformationConstants.HELP_INFORMATION_STAGE_FXML_NAME + " should be executable." );
     }
 
     @Test
@@ -138,26 +138,26 @@ class SignInStageTest
     {
         assertThrows( NullPointerException.class, () -> invalidURLToHelpInformationSceneCSS.getPath(),
                 "Should throw NullPointerException, invalid path to " +
-                        HelpInformationStageConstants.HELP_INFORMATION_STAGE_CSS_NAME);
+                        HelpInformationConstants.HELP_INFORMATION_STAGE_CSS_NAME);
 
         assertDoesNotThrow( () -> validURLToHelpInformationSceneCSS.getPath(),
-                "Correct path to " + HelpInformationStageConstants.HELP_INFORMATION_STAGE_CSS_NAME
+                "Correct path to " + HelpInformationConstants.HELP_INFORMATION_STAGE_CSS_NAME
                         + ", shouldn't throw any exceptions." );
 
         assertTrue( helpInformationCSSFile.exists(),
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_CSS_NAME + " should exist" );
+                HelpInformationConstants.HELP_INFORMATION_STAGE_CSS_NAME + " should exist" );
 
         assertFalse( helpInformationCSSFile.isDirectory(),
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_CSS_NAME + " shouldn't be a directory.");
+                HelpInformationConstants.HELP_INFORMATION_STAGE_CSS_NAME + " shouldn't be a directory.");
 
         assertTrue( helpInformationCSSFile.canRead(),
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_CSS_NAME + " should be readable." );
+                HelpInformationConstants.HELP_INFORMATION_STAGE_CSS_NAME + " should be readable." );
 
         assertTrue( helpInformationCSSFile.canWrite(),
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_CSS_NAME + " should be writeable." );
+                HelpInformationConstants.HELP_INFORMATION_STAGE_CSS_NAME + " should be writeable." );
 
         assertTrue( helpInformationCSSFile.canExecute(),
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_CSS_NAME + " should be executable." );
+                HelpInformationConstants.HELP_INFORMATION_STAGE_CSS_NAME + " should be executable." );
     }
     
 }

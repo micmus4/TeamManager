@@ -183,7 +183,8 @@ public class StageUtils
 
     private static void createListenerForAvoidingDuplicateStages( Stage stage, SimpleBooleanProperty isStageOnScreen )
     {
-        stage.setOnCloseRequest( wE -> {
+        stage.setOnCloseRequest( wE ->
+        {
             isStageOnScreen.set( false );
             LOGGER.info( "Closing " + stage.getClass().getSimpleName() );
         });
@@ -202,8 +203,13 @@ public class StageUtils
         LOGGER.info( "Set Image's Tooltip" );
         Tooltip tooltip = new Tooltip();
         tooltip.setText( message );
-        imageView.setPickOnBounds(true);
+        imageView.setPickOnBounds( true );
         Tooltip.install( imageView, tooltip );
+    }
+
+    public static void setTooltipForCorrectInput( ImageView status, String propertyName )
+    {
+        setImageTooltip( propertyName + " is acceptable.", status );
     }
 
 

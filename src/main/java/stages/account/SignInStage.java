@@ -1,9 +1,8 @@
 package stages.account;
 
-import constants.help.HelpContactStageConstants;
-import constants.help.HelpInformationStageConstants;
-import constants.account.RegisterAccountStageConstants;
-import javafx.beans.property.BooleanProperty;
+import constants.help.HelpContactConstants;
+import constants.help.HelpInformationConstants;
+import constants.account.RegisterAccountConstants;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +12,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import start.Start;
 import utils.AlertUtils;
 import utils.StageUtils;
 
@@ -64,8 +62,8 @@ public class SignInStage
 
         try
         {
-            urlToFXML = getClass().getResource( HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_FXML );
-            urlToCSS = getClass().getResource( HelpContactStageConstants.HELP_CONTACT_STAGE_RESOURCES_CSS );
+            urlToFXML = getClass().getResource( HelpContactConstants.HELP_CONTACT_STAGE_RESOURCES_FXML );
+            urlToCSS = getClass().getResource( HelpContactConstants.HELP_CONTACT_STAGE_RESOURCES_CSS );
             root = FXMLLoader.load( urlToFXML );
             LOGGER.info( "HelpContactStage loaded" );
         }
@@ -78,8 +76,8 @@ public class SignInStage
 
         LOGGER.info( "Creating HelpContactStage." );
         return StageUtils.createStage( "Contact", false, root, urlToCSS,
-                HelpContactStageConstants.HELP_CONTACT_STAGE_WIDTH,
-                HelpContactStageConstants.HELP_CONTACT_STAGE_HEIGHT );
+                HelpContactConstants.HELP_CONTACT_STAGE_WIDTH,
+                HelpContactConstants.HELP_CONTACT_STAGE_HEIGHT );
     }
 
 
@@ -91,8 +89,8 @@ public class SignInStage
 
         try
         {
-            urlToFXML = getClass().getResource( HelpInformationStageConstants.HELP_INFORMATION_STAGE_RESOURCES_FXML );
-            urlToCSS = getClass().getResource(  HelpInformationStageConstants.HELP_INFORMATION_STAGE_RESOURCES_CSS );
+            urlToFXML = getClass().getResource( HelpInformationConstants.HELP_INFORMATION_STAGE_RESOURCES_FXML );
+            urlToCSS = getClass().getResource(  HelpInformationConstants.HELP_INFORMATION_STAGE_RESOURCES_CSS );
             root = FXMLLoader.load( urlToFXML );
             LOGGER.info( "HelpInformationStage loaded." );
         }
@@ -105,8 +103,8 @@ public class SignInStage
 
         LOGGER.info( "Creating HelpInformationStage." );
         return StageUtils.createStage( "Information", false, root, urlToCSS,
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_WIDTH,
-                HelpInformationStageConstants.HELP_INFORMATION_STAGE_HEIGHT );
+                HelpInformationConstants.HELP_INFORMATION_STAGE_WIDTH,
+                HelpInformationConstants.HELP_INFORMATION_STAGE_HEIGHT );
     }
 
     private Stage createRegisterAccountStage()
@@ -117,8 +115,8 @@ public class SignInStage
 
         try
         {
-            urlToFXML = getClass().getResource( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_RESOURCES_FXML );
-            urlToCSS = getClass().getResource( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_RESOURCES_CSS );
+            urlToFXML = getClass().getResource( RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_RESOURCES_FXML );
+            urlToCSS = getClass().getResource( RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_RESOURCES_CSS );
             root = FXMLLoader.load( urlToFXML );
             LOGGER.info( "RegisterAccountStage loaded." );
         }
@@ -131,8 +129,8 @@ public class SignInStage
 
         LOGGER.info( "Creating RegisterAccountStage." );
         return StageUtils.createStage( "Register account", false, root, urlToCSS,
-                RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_WIDTH,
-                RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_HEIGHT );
+                RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_WIDTH,
+                RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_HEIGHT );
     }
 
     @FXML

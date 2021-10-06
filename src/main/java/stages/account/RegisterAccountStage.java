@@ -1,7 +1,7 @@
 package stages.account;
 
 import constants.ProjectConstants;
-import constants.account.RegisterAccountStageConstants;
+import constants.account.RegisterAccountConstants;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -200,9 +199,9 @@ public class RegisterAccountStage
 
     private void setTooltips()
     {
-        StageUtils.setImageTooltip( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_LOGIN_TOOLTIP_MESSAGE, loginTooltipImage );
-        StageUtils.setImageTooltip( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_PASSWORD_TOOLTIP_MESSAGE, passwordTooltipImage );
-        StageUtils.setImageTooltip( RegisterAccountStageConstants.REGISTER_ACCOUNT_STAGE_EMAIL_TOOLTIP_MESSAGE, emailTooltipImage );
+        StageUtils.setImageTooltip( RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_LOGIN_TOOLTIP_MESSAGE, loginTooltipImage );
+        StageUtils.setImageTooltip( RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_PASSWORD_TOOLTIP_MESSAGE, passwordTooltipImage );
+        StageUtils.setImageTooltip( RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_EMAIL_TOOLTIP_MESSAGE, emailTooltipImage );
         LOGGER.info( "Setting tooltips" );
     }
 
