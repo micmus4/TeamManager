@@ -12,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import properties.StageProperties;
 import utils.AlertUtils;
 import utils.StageUtils;
 
@@ -29,11 +30,11 @@ public class SignInStage
     @FXML
     private Label versionLabel;
 
-    private final SimpleBooleanProperty isHelpContactStageOnScreen = new SimpleBooleanProperty();
+    private SimpleBooleanProperty isHelpContactStageOnScreen;
 
-    private final SimpleBooleanProperty isHelpInformationStageOnScreen = new SimpleBooleanProperty();
+    private SimpleBooleanProperty isHelpInformationStageOnScreen;
 
-    private final SimpleBooleanProperty isRegisterAccountStageOnScreen = new SimpleBooleanProperty();
+    private SimpleBooleanProperty isRegisterAccountStageOnScreen;
 
     public SignInStage(){}
 
@@ -41,6 +42,10 @@ public class SignInStage
     public void initialize()
     {
         LOGGER.info( "Initializing SignInStage properties" );
+        isHelpContactStageOnScreen = StageProperties.getIsHelpContactStageOnScreenProperty();
+        isRegisterAccountStageOnScreen = StageProperties.getIsRegisterAccountStageOnScreenProperty();
+        isHelpInformationStageOnScreen = StageProperties.getIsHelpInformationStageOnScreenProperty();
+
         StageUtils.setProjectVersionLabel( versionLabel );
         isRegisterAccountStageOnScreen.setValue( false );
         isHelpInformationStageOnScreen.setValue( false );

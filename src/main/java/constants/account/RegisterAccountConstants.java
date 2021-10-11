@@ -47,7 +47,10 @@ public class RegisterAccountConstants
     public static final String EMPTY_NAME_MESSAGE = " Name can not be empty.";
     public static final String EMPTY_COUNTRY_MESSAGE = "Country can not be empty.";
     public static final String EMPTY_PHONE_NUMBER_MESSAGE = "Phone Number can not be empty.";
+
+    // "-" and " " are exception to the rule when it comes to this constant.
     public static final String NON_DIGIT_CHARACTERS_IN_PHONE_NUMBER_MESSAGE = "Phone Number can not have non-digit characters.";
+
     public static final String WRONG_PHONE_NUMBER_PATTERN = "Phone Number must match one of the following patterns:\n\t- 123-456-789 " +
         "\n\t- 123 456 789\n\t- 123456789";
     public static final String EMPTY_LOGIN_MESSAGE = "Login can not be empty";
@@ -56,5 +59,19 @@ public class RegisterAccountConstants
     public static final String EMPTY_EMAIL_MESSAGE = "Email can not be empty";
     public static final String NECESSARY_CHARACTERS_IN_EMAIL_NOT_FOUND = "Email must have:\n\t- at least one '@'\n\t" +
             "- at least one '.'";
+
+
+    /**
+     * RegisterAccountValidation properties patterns.
+     */
+    public static final String PHONE_NUMBER_PATTERN = "^\\d{9}$";
+    public static final String PHONE_NUMBER_PATTERN_WITH_SPACES = "^\\d{3} \\d{3} \\d{3}$";
+    public static final String PHONE_NUMBER_PATTERN_WITH_DASHES = "^\\d{3}-\\d{3}-\\d{3}$";
+    public static final String SPECIAL_CHARACTERS_PATTERN = "[^A-Za-z0-9]";
+    public static final String UPPERCASE_LETTERS_PATTERN = "[^A-Z]";
+    public static final String LOWERCASE_LETTERS_PATTERN = "[^a-z]";
+    public static final String DIGITS_PATTERN = "[^0-9]";
+    public static final String EVERYTHING_BUT_DIGITS_SPACES_AND_DASHES_PATTERN = "[^0-9\\-\\s]";
+
 }
 

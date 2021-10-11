@@ -4,16 +4,19 @@ import constants.ProjectConstants;
 import constants.account.RegisterAccountConstants;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import properties.StageProperties;
 import utils.AlertUtils;
 import utils.StageUtils;
 import validation.RegisterAccountValidation;
@@ -21,6 +24,7 @@ import validation.RegisterAccountValidation;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class RegisterAccountStage
@@ -104,6 +108,8 @@ public class RegisterAccountStage
     @FXML
     private ImageView emailTooltipImage;
 
+    private RegisterAccountValidation registerValidation;
+
 
     public void initialize()
     {
@@ -113,11 +119,11 @@ public class RegisterAccountStage
         loadCountriesToChoiceBox();
         setTooltips();
 
-        LinkedHashMap<Observable, ImageView> propertyToImageMap = createMapForValidation();
-        ArrayList<Observable> properties = new ArrayList<>( propertyToImageMap.keySet() );
+        LinkedHashMap< Observable, ImageView > propertyToImageMap = createMapForValidation();
+        ArrayList< Observable > properties = new ArrayList<>( propertyToImageMap.keySet() );
 
         LOGGER.info( "Creating RegisterAccountValidation instance to validate signing up." );
-        RegisterAccountValidation registerValidation = new RegisterAccountValidation( propertyToImageMap, properties );
+        registerValidation = new RegisterAccountValidation( propertyToImageMap, properties );
         registerValidation.activateValidationForRegistrationProperties();
     }
 
@@ -197,6 +203,7 @@ public class RegisterAccountStage
         return map;
     }
 
+
     private void setTooltips()
     {
         StageUtils.setImageTooltip( RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_LOGIN_TOOLTIP_MESSAGE, loginTooltipImage );
@@ -205,4 +212,31 @@ public class RegisterAccountStage
         LOGGER.info( "Setting tooltips" );
     }
 
+
+    @FXML
+    private void abandonRegistrationProcess()
+    {
+        Stage registerAccountStage = (Stage) firstNameField.getScene().getWindow();
+        SimpleBooleanProperty isRegisterAccountStageOnScreenProperty = StageProperties.getIsRegisterAccountStageOnScreenProperty();
+        StageUtils.closeStage( registerAccountStage, isRegisterAccountStageOnScreenProperty );
+    }
+
+    @FXML
+    private void continueRegistrationProcess()
+    {
+        HashMap< Observable, Boolean > isRegistrationDataValidMap = registerValidation.getIsRegistrationDataValidMap();
+        boolean allDataIsValid = !isRegistrationDataValidMap.containsValue( false );
+        if( !allDataIsValid )
+        {
+            LOGGER.warn( "Registration of account stopped because of invalid data passed." );
+            AlertUtils.popUpInfoAlert( "Information", "Registration failed!", "Couldn't create account" +
+                    " because of invalid data. Make sure all data you've provided is mark as valid and try again." );
+        }
+        else
+        {
+            String loginOfNewlyCreatedAccount = loginTextProperty.getValue();
+            LOGGER.info( "Account with login " + loginOfNewlyCreatedAccount + " created successfully." );
+            // now create football club for account
+        }
+    }
 }

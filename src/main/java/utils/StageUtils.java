@@ -13,7 +13,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import stages.help.HelpInformationStage;
 
 import java.net.URL;
 
@@ -54,7 +53,7 @@ public class StageUtils
     {
         LOGGER.info( "Creating new stage." );
         Stage newStage = new Stage();
-        newStage.getIcons().add( transformPathToImageToImageInstance( ImageConstants.ICON_RESOURCES) );
+        newStage.getIcons().add( transformPathToImageToImageInstance( ImageConstants.ICON) );
         newStage.setTitle( title );
         newStage.setResizable( isResizable );
         Scene newScene = new Scene( root, width, height );
@@ -88,7 +87,7 @@ public class StageUtils
                                      URL cssFile, Double width, Double height )
     {
         LOGGER.info( "Creating new stage." );
-        newStage.getIcons().add( transformPathToImageToImageInstance( ImageConstants.ICON_RESOURCES) );
+        newStage.getIcons().add( transformPathToImageToImageInstance( ImageConstants.ICON) );
         newStage.setTitle( title );
         newStage.setResizable( isResizable );
         Scene newScene = new Scene( root, width, height );
@@ -113,14 +112,12 @@ public class StageUtils
 
     public static Image transformPathToImageToImageInstance( String stringPathToImage )
     {
-        LOGGER.info( "Transforming " + stringPathToImage + " to Image instance." );
         URL urlToImage = StageUtils.class.getResource( stringPathToImage );
         if( urlToImage == null )
         {
             LOGGER.warn( "Couldn't create URL from " + stringPathToImage, " there will be no image." );
             return null;
         }
-        LOGGER.info( stringPathToImage + " was successfully transformed to Image instance." );
         return new Image( urlToImage.toString() );
     }
 
@@ -186,21 +183,27 @@ public class StageUtils
         stage.setOnCloseRequest( wE ->
         {
             isStageOnScreen.set( false );
-            LOGGER.info( "Closing " + stage.getClass().getSimpleName() );
+            LOGGER.info( "Closing " + stage.getTitle() + " Stage." );
         });
+    }
+
+
+    public static void closeStage( Stage stage, SimpleBooleanProperty isStageOnScreen )
+    {
+        isStageOnScreen.set( false );
+        stage.close();
+        LOGGER.info( "Closing " + stage.getTitle() + " Stage." );
     }
 
 
     public static void setImage( ImageView imageView, String pathToImage )
     {
-        LOGGER.info("Setting Image ");
         imageView.setImage( transformPathToImageToImageInstance( pathToImage ) );
     }
 
 
     public static void setImageTooltip( String message, ImageView imageView )
     {
-        LOGGER.info( "Set Image's Tooltip" );
         Tooltip tooltip = new Tooltip();
         tooltip.setText( message );
         imageView.setPickOnBounds( true );

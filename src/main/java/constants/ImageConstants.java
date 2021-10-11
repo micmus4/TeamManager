@@ -19,16 +19,16 @@ public class ImageConstants
      * Relative paths (from resources dir) to images.
      */
 
-    public static final String ICON_RESOURCES = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
+    public static final String ICON = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
             ICON_NAME ).replace( "\\", "/" );
 
-    public static final String QUESTION_MARK_RESOURCES = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
+    public static final String QUESTION_MARK = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
             QUESTION_MARK_NAME ).replace( "\\", "/" );
 
-    public static final String CORRECT_RESOURCES = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
+    public static final String CORRECT = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
             CORRECT_NAME ).replace( "\\", "/" );
 
-    public static final String WRONG_RESOURCES = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
+    public static final String WRONG = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
             WRONG_NAME ).replace( "\\", "/" );
 
 }
