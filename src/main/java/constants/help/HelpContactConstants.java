@@ -1,10 +1,12 @@
 package constants.help;
 
 
-import constants.ProjectConstants;
+import constants.other.ProjectConstants;
 
 public class HelpContactConstants
 {
+
+    private HelpContactConstants(){}
 
     /**
      * Height and width for HelpContactStage.

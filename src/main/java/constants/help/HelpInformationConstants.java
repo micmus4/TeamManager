@@ -1,9 +1,11 @@
 package constants.help;
 
-import constants.ProjectConstants;
+import constants.other.ProjectConstants;
 
 public class HelpInformationConstants
 {
+    private HelpInformationConstants(){}
+
     /**
      * Height and width for HelpInformationStage.
      */

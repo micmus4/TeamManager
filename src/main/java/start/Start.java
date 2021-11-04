@@ -1,6 +1,7 @@
 package start;
 
 import constants.account.SignInConstants;
+import data.AccountManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +21,8 @@ public class Start extends Application {
 
     private static final Logger LOGGER = LogManager.getLogger( Start.class );
 
+    private final AccountManager accountManager = AccountManager.getAccountManagerInstance();
+
     public static void main( String[] args )
     {
         launch( args );
@@ -28,6 +31,7 @@ public class Start extends Application {
     @Override
     public void start( Stage signInStage )
     {
+        accountManager.loadAccountsFromFile();
         signInStage = createSignInScene( signInStage );
         try
         {
@@ -43,7 +47,8 @@ public class Start extends Application {
     }
 
 
-    public Stage createSignInScene( Stage signInStage )  {
+    public Stage createSignInScene( Stage signInStage )
+    {
         Parent root;
         URL urlToFXML;
         URL urlToCSS;

@@ -1,7 +1,11 @@
-package constants;
+package constants.other;
+
+import javax.swing.text.html.ImageView;
 
 public class ImageConstants
 {
+    private ImageConstants(){}
+
     /**
      * Names of files containing images.
      */

@@ -1,4 +1,5 @@
-#registerTextLabel {
+#registerTextLabel, #logInTextLabel
+{
     -fx-text-fill: blue;
     -fx-font-weight: bold;
     -fx-border-color: transparent;
@@ -6,21 +7,19 @@
     -fx-underline: false;
 }
 
-#askAboutAccountTextLabel {
+#askAboutAccountTextLabel
+{
     -fx-font-weight: bold;
     -fx-font-style: italic;
 }
-#registerTextLabel:hover{
+
+#registerTextLabel:hover, #logInTextLabel:hover
+{
     -fx-underline: true;
     -fx-font-style: italic;
 }
 
-#helpMenuBar{
+#helpMenuBar
+{
     -fx-background-color: transparent;
-}
-
-#version{
-    -fx-underline: true;
-    -fx-font-style: italic;
-    -fx-font-weight: bold;
 }

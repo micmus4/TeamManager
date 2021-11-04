@@ -1,0 +1,6 @@
+#version
+{
+    -fx-underline: true;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+}

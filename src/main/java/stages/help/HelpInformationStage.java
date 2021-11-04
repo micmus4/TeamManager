@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import stages.account.SignInStage;
 import utils.StageUtils;
 
 public class HelpInformationStage

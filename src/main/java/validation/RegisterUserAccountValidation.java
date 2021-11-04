@@ -1,7 +1,8 @@
 package validation;
 
-import constants.ImageConstants;
+import constants.other.ImageConstants;
 import constants.account.RegisterAccountConstants;
+import constants.validation.ValidationConstants;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
@@ -9,17 +10,16 @@ import javafx.scene.image.ImageView;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utils.StageUtils;
+import utils.ValidationUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.regex.Pattern;
 
-public class RegisterAccountValidation
+public class RegisterUserAccountValidation implements ValidatableIf
 {
-    private static final Logger LOGGER = LogManager.getLogger( RegisterAccountValidation.class );
-
+    private static final Logger LOGGER = LogManager.getLogger( RegisterUserAccountValidation.class );
 
     private final StringProperty firstNameTextProperty;
 
@@ -53,13 +53,12 @@ public class RegisterAccountValidation
 
     private final ImageView phoneNumberStatus;
 
-    private HashMap< Observable, Boolean > isRegistrationDataValidMap;
+    private final HashMap< Observable, Boolean > isRegistrationDataValidMap;
 
 
-    public RegisterAccountValidation( LinkedHashMap< Observable, ImageView > propertyToImageMap,
-                                      ArrayList< Observable > properties  )
+    public RegisterUserAccountValidation( LinkedHashMap< Observable, ImageView > propertyToImageMap,
+                                         ArrayList< Observable > properties )
     {
-
         firstNameTextProperty = (StringProperty) properties.get( 0 );
         firstNameStatus = propertyToImageMap.get( firstNameTextProperty );
 
@@ -75,7 +74,7 @@ public class RegisterAccountValidation
         confirmPasswordTextProperty = (StringProperty) properties.get( 4 );
         confirmPasswordStatus = propertyToImageMap.get( confirmPasswordTextProperty );
 
-        countryValueProperty = (ObjectProperty<String>) properties.get( 5 );
+        countryValueProperty = (ObjectProperty< String >) properties.get( 5 );
         countryStatus = propertyToImageMap.get( countryValueProperty );
 
         emailTextProperty = (StringProperty) properties.get( 6 );
@@ -85,24 +84,31 @@ public class RegisterAccountValidation
         phoneNumberStatus = propertyToImageMap.get( phoneNumberTextProperty );
 
         isRegistrationDataValidMap = createIsRegistrationDataValidMap();
-        LOGGER.info( "RegisterAccountValidation properties initialized." );
-
+        LOGGER.info( "RegisterUserAccountValidation properties initialized." );
     }
 
 
-    public void activateValidationForRegistrationProperties()
+    @Override
+    public void activateValidation()
     {
-        createValidationForNameProperties( firstNameTextProperty, firstNameStatus, "First" );
-        createValidationForNameProperties( lastNameTextProperty, lastNameStatus, "Last" );
+        ValidationUtils.createValidationForNameTypeProperty( firstNameTextProperty, firstNameStatus,
+                isRegistrationDataValidMap, RegisterAccountConstants.FIRST_NAME_TYPE );
+        ValidationUtils.createValidationForNameTypeProperty( lastNameTextProperty, lastNameStatus,
+                isRegistrationDataValidMap, RegisterAccountConstants.LAST_NAME_TYPE );
+        ValidationUtils.createValidationForComboBoxTypeProperty( countryValueProperty, countryStatus,
+                isRegistrationDataValidMap, ValidationConstants.EMPTY_COUNTRY_MESSAGE,
+                RegisterAccountConstants.COUNTRY_PROPERTY_NAME );
+
         createValidationForPasswordProperties( passwordTextProperty, passwordStatus );
         createValidationForPasswordProperties( confirmPasswordTextProperty, confirmPasswordStatus );
-        createValidationForCountryProperty( countryValueProperty, countryStatus );
         createValidationForPhoneNumberProperty( phoneNumberTextProperty, phoneNumberStatus );
         createValidationForLoginProperty( loginTextProperty, loginStatus );
         createValidationForEmailProperty( emailTextProperty, emailStatus );
-        LOGGER.info( "Activated validations for registration properties." );
+        LOGGER.info( "Activated validations for RegisterUserAccountStage properties." );
     }
 
+
+    @Override
     public HashMap< Observable, Boolean > createIsRegistrationDataValidMap()
     {
         HashMap< Observable, Boolean > map = new HashMap<>();
@@ -115,40 +121,14 @@ public class RegisterAccountValidation
         map.put( countryValueProperty, false );
         map.put( phoneNumberTextProperty, false );
         map.put( emailTextProperty, false );
-        LOGGER.info( "Created map with results of RegisterAccountStage fields' validation." );
+        LOGGER.info( "Created map with results of RegisterUserAccountStage fields' validation." );
 
         return map;
     }
 
-
-    private void createValidationForNameProperties( StringProperty property, ImageView status, String whichName )
-    {
-        StageUtils.setImageTooltip( ( whichName + RegisterAccountConstants.EMPTY_NAME_MESSAGE ), status );
-        
-        property.addListener( (observableValue, s, t1 ) ->
-        {
-            final String propertyValue = property.getValue();
-            if( propertyValue.isEmpty() )
-            {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( ( whichName + RegisterAccountConstants.EMPTY_NAME_MESSAGE ), status );
-                isRegistrationDataValidMap.put( property, false );
-            }
-            else
-            {
-                StageUtils.setImage( status, ImageConstants.CORRECT );
-                StageUtils.setTooltipForCorrectInput( status, ( whichName + " Name" ) );
-                isRegistrationDataValidMap.put( property, true );
-            }
-        });
-        LOGGER.info( "Created listener for validation of " + whichName + " Name" );
-    }
-
-
     private void createValidationForPasswordProperties( StringProperty property, ImageView status )
     {
         StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_PASSWORD_MESSAGE, status );
-        
         property.addListener( ( observableValue, s, t1 ) ->
         {
             final String propertyValue = property.getValue();
@@ -181,34 +161,9 @@ public class RegisterAccountValidation
     }
 
 
-    private void createValidationForCountryProperty( ObjectProperty< String > property, ImageView status )
-    {
-        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_COUNTRY_MESSAGE, status );
-        
-        property.addListener( ( observableValue, s, t1 ) ->
-        {
-            final String propertyValue = property.getValue();
-            if( propertyValue == null )
-            {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_COUNTRY_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
-            }
-            else
-            {
-                StageUtils.setImage( status, ImageConstants.CORRECT );
-                StageUtils.setTooltipForCorrectInput( status, "Country" );
-                isRegistrationDataValidMap.put( property, true );
-            }
-        } );
-        LOGGER.info( "Created listener for validation of country property." );
-    }
-
-
     public void createValidationForPhoneNumberProperty( StringProperty property, ImageView status )
     {
         StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_PHONE_NUMBER_MESSAGE, status );
-        
         property.addListener( ( observableValue, s, t1 ) ->
         {
             final String propertyValue = property.getValue();
@@ -245,7 +200,6 @@ public class RegisterAccountValidation
 
     public void createValidationForLoginProperty( StringProperty property, ImageView status )
     {
-        
         StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_LOGIN_MESSAGE, status );
         property.addListener( ( observableValue, s, t1 ) ->
         {
@@ -291,7 +245,7 @@ public class RegisterAccountValidation
                 StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_EMAIL_MESSAGE, status );
                 isRegistrationDataValidMap.put( property, false );
             }
-            else if ( !( propertyValue.contains( "@" ) && propertyValue.contains( "." ) ) )
+            else if ( !( propertyValue.contains( "@" ) && propertyValue.contains( "." ) && propertyValue.length() >= 3) )
             {
                 StageUtils.setImage( status, ImageConstants.WRONG );
                 StageUtils.setImageTooltip( RegisterAccountConstants.NECESSARY_CHARACTERS_IN_EMAIL_NOT_FOUND, status );
@@ -344,7 +298,9 @@ public class RegisterAccountValidation
         return true;
     }
 
-    public HashMap<Observable, Boolean> getIsRegistrationDataValidMap() {
+    @Override
+    public HashMap< Observable, Boolean > getIsRegistrationDataValidMap()
+    {
         return isRegistrationDataValidMap;
     }
 }

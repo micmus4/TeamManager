@@ -1,11 +1,11 @@
 package constants.account;
 
 
-import constants.ProjectConstants;
+import constants.other.ProjectConstants;
 
 public class SignInConstants
 {
-
+    private SignInConstants(){}
 
     /**
      * Height and width for SignInStage.

@@ -1,13 +1,17 @@
 package stages.account;
 
+import account.CompleteAccount;
 import constants.help.HelpContactConstants;
 import constants.help.HelpInformationConstants;
 import constants.account.RegisterAccountConstants;
+import data.AccountManager;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -20,12 +24,22 @@ import java.io.IOException;
 import java.net.URL;
 
 
-public class SignInStage
+public class SignInStage implements PropertizableIf
 {
 
     private static final Logger LOGGER = LogManager.getLogger( SignInStage.class );
 
     private static Stage signInStage;
+
+    @FXML
+    private TextField loginField;
+
+    @FXML
+    private TextField passwordField;
+
+    private StringProperty loginTextProperty;
+
+    private StringProperty passwordTextProperty;
 
     @FXML
     private Label versionLabel;
@@ -36,12 +50,15 @@ public class SignInStage
 
     private SimpleBooleanProperty isRegisterAccountStageOnScreen;
 
+    private final AccountManager accountManager = AccountManager.getAccountManagerInstance();
+
     public SignInStage(){}
 
 
     public void initialize()
     {
         LOGGER.info( "Initializing SignInStage properties" );
+        setPropertiesForControls();
         isHelpContactStageOnScreen = StageProperties.getIsHelpContactStageOnScreenProperty();
         isRegisterAccountStageOnScreen = StageProperties.getIsRegisterAccountStageOnScreenProperty();
         isHelpInformationStageOnScreen = StageProperties.getIsHelpInformationStageOnScreenProperty();
@@ -112,7 +129,7 @@ public class SignInStage
                 HelpInformationConstants.HELP_INFORMATION_STAGE_HEIGHT );
     }
 
-    private Stage createRegisterAccountStage()
+    private Stage createRegisterUserAccountStage()
     {
         Parent root;
         URL urlToFXML;
@@ -120,22 +137,22 @@ public class SignInStage
 
         try
         {
-            urlToFXML = getClass().getResource( RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_RESOURCES_FXML );
-            urlToCSS = getClass().getResource( RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_RESOURCES_CSS );
+            urlToFXML = getClass().getResource( RegisterAccountConstants.REGISTER_USER_ACCOUNT_STAGE_RESOURCES_FXML );
+            urlToCSS = getClass().getResource( RegisterAccountConstants.REGISTER_USER_ACCOUNT_STAGE_RESOURCES_CSS );
             root = FXMLLoader.load( urlToFXML );
-            LOGGER.info( "RegisterAccountStage loaded." );
+            LOGGER.info( "RegisterUserAccountStage loaded." );
         }
         catch ( IOException | NullPointerException e )
         {
-            LOGGER.error( e.getClass().getSimpleName() + " thrown while initializing RegisterAccountStage." );
+            LOGGER.error( e.getClass().getSimpleName() + " thrown while initializing RegisterUserAccountStage." );
             AlertUtils.popUpErrorAlert( e );
             return null;
         }
 
-        LOGGER.info( "Creating RegisterAccountStage." );
-        return StageUtils.createStage( "Register account", false, root, urlToCSS,
-                RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_WIDTH,
-                RegisterAccountConstants.REGISTER_ACCOUNT_STAGE_HEIGHT );
+        LOGGER.info( "Creating RegisterUserAccountStage." );
+        return StageUtils.createStage( "Register user account", false, root, urlToCSS,
+                RegisterAccountConstants.REGISTER_USER_ACCOUNT_STAGE_WIDTH,
+                RegisterAccountConstants.REGISTER_USER_ACCOUNT_STAGE_HEIGHT );
     }
 
     @FXML
@@ -144,8 +161,8 @@ public class SignInStage
         if ( !isHelpContactStageOnScreen.get() )
         {
             Stage helpContactStage = createHelpContactStage();
-            boolean isHelpContactStageShown = StageUtils.isStageShown( helpContactStage, signInStage,
-                                                    Modality.NONE, isHelpContactStageOnScreen );
+            boolean isHelpContactStageShown = StageUtils.showStageAndCheckIfItsShown( helpContactStage, signInStage,
+                                                    Modality.NONE, isHelpContactStageOnScreen, true );
             if ( isHelpContactStageShown )
             {
                 LOGGER.info( "HelpContactStage shown on the screen." );
@@ -161,8 +178,8 @@ public class SignInStage
         if ( !isHelpInformationStageOnScreen.get() )
         {
             Stage helpInformationStage = createHelpInformationStage();
-            boolean isHelpInformationStageShown = StageUtils.isStageShown( helpInformationStage, signInStage,
-                                                        Modality.NONE, isHelpInformationStageOnScreen );
+            boolean isHelpInformationStageShown = StageUtils.showStageAndCheckIfItsShown( helpInformationStage, signInStage,
+                                                        Modality.NONE, isHelpInformationStageOnScreen, true );
             if ( isHelpInformationStageShown )
             {
                 LOGGER.info( "HelpInformationStage shown on the screen." );
@@ -171,18 +188,47 @@ public class SignInStage
         }
     }
 
+
     @FXML
     private void popUpRegisterAccountStageOnScreen(){
         if ( !isRegisterAccountStageOnScreen.get() )
         {
-            Stage registerAccountStage = createRegisterAccountStage();
-            boolean isRegisterAccountStageShown = StageUtils.isStageShown( registerAccountStage, signInStage,
-                                                        Modality.WINDOW_MODAL, isRegisterAccountStageOnScreen );
+            Stage registerAccountStage = createRegisterUserAccountStage();
+            registerAccountStage.setUserData( getSignInStage() );
+            boolean isRegisterAccountStageShown = StageUtils.showStageAndCheckIfItsShown( registerAccountStage, signInStage,
+                                                        Modality.WINDOW_MODAL, isRegisterAccountStageOnScreen, true );
             if ( isRegisterAccountStageShown )
             {
                 LOGGER.info( "RegisterAccountStage shown on the screen." );
                 isRegisterAccountStageOnScreen.set( true );
             }
+        }
+    }
+
+
+    private Stage getSignInStage()
+    {
+        return (Stage) versionLabel.getScene().getWindow();
+    }
+
+
+    @Override
+    public void setPropertiesForControls()
+    {
+        loginTextProperty = loginField.textProperty();
+        passwordTextProperty = passwordField.textProperty();
+    }
+
+
+    @FXML
+    public void logIn()
+    {
+        String login = loginTextProperty.getValue();
+        String password = passwordTextProperty.getValue();
+        CompleteAccount account = accountManager.logIn( login, password );
+        if( account != null )
+        {
+            // open main application
         }
     }
 }

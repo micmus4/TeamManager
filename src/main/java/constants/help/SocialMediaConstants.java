@@ -2,6 +2,7 @@ package constants.help;
 
 public enum SocialMediaConstants
 {
+
     /**
      * Links to my social medias.
      */

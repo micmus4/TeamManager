@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="stages.account.RegisterFootballClubStage">
+    <top>
+        <VBox alignment="CENTER">
+            <padding>
+                <Insets top="125"/>
+            </padding>
+            <Label id="creatingAccountInfoLabel" text="Creating account process"/>
+            <Label id="creatingAccountStepsLabel" text="(2/2) - creating football club account."/>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox alignment="CENTER">
+            <VBox alignment="CENTER">
+                <GridPane hgap="10" vgap="10">
+
+                    <Label text="Full name: " GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <Label text="Short name: " GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <Label text="Date of creation: " GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    <Label text="League: " GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <Label text="Stadium name: " GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                    <Label text="Stadium capacity: " GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                    <Label text="Country: " GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+                    <TextField fx:id="fullNameField" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                    <TextField fx:id="shortNameField" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                    <DatePicker fx:id="dateOfCreationDataPicker" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                    <ComboBox fx:id="leagueComboBox" GridPane.columnIndex="2" GridPane.rowIndex="3" prefWidth="175"/>
+                    <TextField fx:id="stadiumNameField" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                    <TextField fx:id="stadiumCapacityField" GridPane.columnIndex="2" GridPane.rowIndex="5"
+                               prefWidth="150"/>
+                    <ComboBox fx:id="countryComboBox" GridPane.columnIndex="2" GridPane.rowIndex="6" prefWidth="175"/>
+
+                    <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.columnSpan="2"
+                          spacing="15">
+                        <padding>
+                            <Insets top="15"/>
+                        </padding>
+                        <Button text="Abandon" prefWidth="75" onAction="#abandonRegistrationProcess"/>
+                        <Button text="Continue" prefWidth="75" onAction="#continueRegistrationProcess"/>
+                    </HBox>
+
+                    <ImageView fx:id="fullNameStatus" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                        <image>
+                            <Image url="@../images/wrong.png"/>
+                        </image>
+                    </ImageView>
+
+                    <ImageView fx:id="shortNameStatus" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <image>
+                            <Image url="@../images/wrong.png"/>
+                        </image>
+                    </ImageView>
+
+                    <ImageView fx:id="dateOfCreationStatus" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <image>
+                            <Image url="@../images/wrong.png"/>
+                        </image>
+                    </ImageView>
+
+                    <ImageView fx:id="leagueStatus" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                        <image>
+                            <Image url="@../images/wrong.png"/>
+                        </image>
+                    </ImageView>
+
+                    <ImageView fx:id="stadiumNameStatus" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <image>
+                            <Image url="@../images/wrong.png"/>
+                        </image>
+                    </ImageView>
+
+                    <ImageView fx:id="stadiumCapacityStatus" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                        <image>
+                            <Image url="@../images/wrong.png"/>
+                        </image>
+                    </ImageView>
+
+                    <ImageView fx:id="countryStatus" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                        <image>
+                            <Image url="@../images/wrong.png"/>
+                        </image>
+                    </ImageView>
+
+                </GridPane>
+            </VBox>
+        </HBox>
+    </center>
+    <bottom>
+        <BorderPane>
+            <padding>
+                <Insets right="5" bottom="5"/>
+            </padding>
+            <right>
+                <Label fx:id="versionLabel" id="version"/>
+            </right>
+        </BorderPane>
+    </bottom>
+</BorderPane>

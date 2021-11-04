@@ -1,22 +1,20 @@
-#author{
+#author
+{
     -fx-font-weight: bold;
 }
 
-.hyperlink {
+.hyperlink
+{
     -fx-border-color: transparent;
     -fx-padding: 4 0 4 0;
 }
 
-.hyperlink:hover {
+.hyperlink:hover
+{
     -fx-font-weight: bold;
 }
 
-.hyperlink:visited {
+.hyperlink:visited
+{
     -fx-text-fill: #00a6ff;
-}
-
-#version{
-    -fx-underline: true;
-    -fx-font-style: italic;
-    -fx-font-weight: bold;
 }
