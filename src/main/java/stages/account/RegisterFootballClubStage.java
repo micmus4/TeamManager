@@ -4,7 +4,7 @@ import account.AccountFactory;
 import account.CompleteAccount;
 import account.FootballClubAccount;
 import account.UserAccount;
-import data.AccountManager;
+import constants.id.BeanIdConstants;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import properties.StageProperties;
+import spring.ObjectFactory;
 import utils.AlertUtils;
 import utils.StageUtils;
 import validation.RegisterFootballClubValidation;
@@ -96,10 +97,11 @@ public class RegisterFootballClubStage extends AbstractRegisterAccountStage
 
     private final AccountFactory accountFactory;
 
+    private final ObjectFactory objectFactory = ObjectFactory.getFactory();
 
     public RegisterFootballClubStage()
     {
-        accountFactory = AccountFactory.getAccountFactoryInstance();
+        accountFactory = (AccountFactory) objectFactory.getBean( BeanIdConstants.ACCOUNT_FACTORY_SINGLETON );
     }
 
     public void initialize()
@@ -183,19 +185,22 @@ public class RegisterFootballClubStage extends AbstractRegisterAccountStage
         String fullNameOfNewlyCreatedFootballClubAccount = fullNameTextProperty.getValue();
         LOGGER.info( "Football Account with login " + fullNameOfNewlyCreatedFootballClubAccount + " created successfully." );
 
-        FootballClubAccount registeredFootballClubAccount = accountFactory.createFootballClubAccount( fullNameTextProperty, shortNameTextProperty,
-                stadiumNameTextProperty, stadiumCapacityTextProperty, countryValueProperty, leagueValueProperty, dateOfCreationValueProperty );
+        FootballClubAccount registeredFootballClubAccount =
+                accountFactory.createFootballClubAccount( fullNameTextProperty, shortNameTextProperty,
+                stadiumNameTextProperty, stadiumCapacityTextProperty, countryValueProperty, leagueValueProperty,
+                dateOfCreationValueProperty );
         UserAccount registeredUserAccount = (UserAccount) getStage().getUserData();
 
         abandonRegistrationProcess();
 
-        CompleteAccount registeredCompleteAccount = accountFactory.createCompleteAccount( registeredUserAccount, registeredFootballClubAccount );
+        CompleteAccount registeredCompleteAccount = accountFactory.
+                createCompleteAccount( registeredUserAccount, registeredFootballClubAccount );
 
         accountManager.addAccount( registeredCompleteAccount );
         accountManager.writeAccountsToFile();
-        // now write full account into cache/file
 
-        AlertUtils.popUpInfoAlert( "Account created", "Account successfully created", "You can now log in into your account." );
+        AlertUtils.popUpInfoAlert( "Account created", "Account successfully created",
+                "You can now log in into your account." );
     }
 
 

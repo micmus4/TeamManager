@@ -4,6 +4,7 @@ import account.CompleteAccount;
 import constants.help.HelpContactConstants;
 import constants.help.HelpInformationConstants;
 import constants.account.RegisterAccountConstants;
+import constants.id.BeanIdConstants;
 import data.AccountManager;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.StringProperty;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import properties.StageProperties;
+import spring.ObjectFactory;
 import utils.AlertUtils;
 import utils.StageUtils;
 
@@ -50,7 +52,10 @@ public class SignInStage implements PropertizableIf
 
     private SimpleBooleanProperty isRegisterAccountStageOnScreen;
 
-    private final AccountManager accountManager = AccountManager.getAccountManagerInstance();
+    private final ObjectFactory objectFactory = ObjectFactory.getFactory();
+
+    private final AccountManager accountManager = (AccountManager)
+            objectFactory.getBean( BeanIdConstants.ACCOUNT_MANAGER_SINGLETON );
 
     public SignInStage(){}
 
@@ -129,6 +134,7 @@ public class SignInStage implements PropertizableIf
                 HelpInformationConstants.HELP_INFORMATION_STAGE_HEIGHT );
     }
 
+
     private Stage createRegisterUserAccountStage()
     {
         Parent root;
@@ -154,6 +160,7 @@ public class SignInStage implements PropertizableIf
                 RegisterAccountConstants.REGISTER_USER_ACCOUNT_STAGE_WIDTH,
                 RegisterAccountConstants.REGISTER_USER_ACCOUNT_STAGE_HEIGHT );
     }
+
 
     @FXML
     private void popUpHelpContactStageOnScreen()

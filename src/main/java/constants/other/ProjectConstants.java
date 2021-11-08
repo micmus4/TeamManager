@@ -56,6 +56,13 @@ public class ProjectConstants
 
 
     /**
+     * Name of Spring Configuration file.
+     */
+
+    public static final String SPRING_CONFIG_FILE_NAME = "applicationContext.xml";
+
+
+    /**
      * Relative path (from resources dir) to .json file containing data about world's countries.
      */
 
@@ -85,5 +92,10 @@ public class ProjectConstants
 
     public static final String RELATIVE_PATH_TO_ACCOUNTS_DAT_FILE = ( ProjectConstants.SEP + "database" + ProjectConstants.SEP +
             ACCOUNTS_DAT_NAME ).replace( "\\", "/" );
+
+
+
+    public static final String RELATIVE_PATH_TO_STRING_CONFIG_FILE =  ( ProjectConstants.SEP + "config" + ProjectConstants.SEP +
+            SPRING_CONFIG_FILE_NAME ).replace( "\\", "/" );
 
 }

@@ -2,20 +2,14 @@ package account;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+@Component
 public class AccountFactory
 {
-    private static final AccountFactory ACCOUNT_FACTORY_INSTANCE = new AccountFactory();
-
-    public static AccountFactory getAccountFactoryInstance() {
-        return ACCOUNT_FACTORY_INSTANCE;
-    }
-
-    private AccountFactory() {
-    }
-
+    private AccountFactory() {}
 
     public UserAccount createUserAccount( StringProperty firstNameProperty, StringProperty lastNameProperty,
                                          StringProperty loginProperty, StringProperty passwordProperty,

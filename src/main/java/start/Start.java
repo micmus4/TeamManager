@@ -1,6 +1,8 @@
 package start;
 
 import constants.account.SignInConstants;
+import constants.id.BeanIdConstants;
+import constants.other.ProjectConstants;
 import data.AccountManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import spring.ObjectFactory;
 import stages.account.SignInStage;
 import utils.AlertUtils;
 import utils.StageUtils;
@@ -21,7 +25,10 @@ public class Start extends Application {
 
     private static final Logger LOGGER = LogManager.getLogger( Start.class );
 
-    private final AccountManager accountManager = AccountManager.getAccountManagerInstance();
+    private final ObjectFactory objectFactory = ObjectFactory.getFactory();
+
+    private final AccountManager accountManager = (AccountManager)
+            objectFactory.getBean( BeanIdConstants.ACCOUNT_MANAGER_SINGLETON );
 
     public static void main( String[] args )
     {

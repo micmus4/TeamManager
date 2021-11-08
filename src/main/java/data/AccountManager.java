@@ -4,19 +4,19 @@ import account.CompleteAccount;
 import constants.other.ProjectConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 import utils.AlertUtils;
 
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 
+@Component
 public class AccountManager
 {
     private final Logger LOGGER = LogManager.getLogger( AccountManager.class );
 
     private AccountManager(){}
-
-    private static final AccountManager accountManagerInstance = new AccountManager();
 
     private final ArrayList< CompleteAccount > listOfAccounts = new ArrayList<>();
 
@@ -24,11 +24,6 @@ public class AccountManager
 
     private final File accountsDatabaseFile = new File( urlToAccountsDatabase.getFile() );
 
-
-    public static AccountManager getAccountManagerInstance()
-    {
-        return accountManagerInstance;
-    }
 
 
     private boolean isFileForStoringAccountsCreated()

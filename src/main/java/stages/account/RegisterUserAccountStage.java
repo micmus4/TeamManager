@@ -3,7 +3,7 @@ package stages.account;
 import account.AccountFactory;
 import account.UserAccount;
 import constants.account.RegisterAccountConstants;
-import data.AccountManager;
+import constants.id.BeanIdConstants;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import properties.StageProperties;
+import spring.ObjectFactory;
 import utils.AlertUtils;
 import utils.StageUtils;
 import validation.RegisterUserAccountValidation;
@@ -36,7 +37,10 @@ public class RegisterUserAccountStage extends AbstractRegisterAccountStage
 
     private static final Logger LOGGER = LogManager.getLogger( RegisterUserAccountStage.class );
 
-    private static final AccountFactory ACCOUNT_FACTORY = AccountFactory.getAccountFactoryInstance();
+    private final ObjectFactory objectFactory = ObjectFactory.getFactory();
+
+    private final AccountFactory accountFactory = (AccountFactory)
+            objectFactory.getBean( BeanIdConstants.ACCOUNT_FACTORY_SINGLETON );
 
     @FXML
     private TextField firstNameField;
@@ -238,7 +242,7 @@ public class RegisterUserAccountStage extends AbstractRegisterAccountStage
         if( !verifyRegistrationData() ) return;
 
         String loginOfNewlyCreatedUserAccount = loginTextProperty.getValue();
-        UserAccount registeredUserAccount = ACCOUNT_FACTORY.createUserAccount( firstNameTextProperty, lastNameTextProperty,
+        UserAccount registeredUserAccount = accountFactory.createUserAccount( firstNameTextProperty, lastNameTextProperty,
                 loginTextProperty, passwordTextProperty, emailTextProperty, phoneNumberTextProperty, countryValueProperty );
         LOGGER.info( "User Account with login " + loginOfNewlyCreatedUserAccount + " created successfully." );
 
