@@ -3,6 +3,8 @@ package spring;
 import constants.other.ProjectConstants;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Objects;
+
 public class ObjectFactory
 {
 
@@ -17,13 +19,14 @@ public class ObjectFactory
 
     private void init()
     {
-        String pathToConfigFile = getClass().getResource( ProjectConstants.RELATIVE_PATH_TO_STRING_CONFIG_FILE ).toString();
+        String pathToConfigFile =
+                Objects.requireNonNull( getClass().getResource( ProjectConstants.RELATIVE_PATH_TO_STRING_CONFIG_FILE ) ).toString();
         springContext = new ClassPathXmlApplicationContext( pathToConfigFile );
     }
 
-    public Object getBean( String beanID )
+    public Object getBean( String aBeanID )
     {
-        return springContext.getBean( beanID );
+        return springContext.getBean( aBeanID );
     }
 
     public static ObjectFactory getFactory()

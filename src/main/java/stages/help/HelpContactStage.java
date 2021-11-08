@@ -15,17 +15,24 @@ import java.net.URISyntaxException;
 
 public class HelpContactStage
 {
-    private static final Logger LOGGER = LogManager.getLogger( HelpContactStage.class );
-
+    private final Logger LOGGER;
 
     @FXML
     private Label versionLabel;
+
+
+    public HelpContactStage()
+    {
+        LOGGER = LogManager.getLogger( HelpContactStage.class );
+    }
+
 
     public void initialize()
     {
         LOGGER.info( "Initializing HelpContactStage properties" );
         StageUtils.setProjectVersionLabel( versionLabel );
     }
+
 
     @FXML
     private void openLinkedinInBrowser()
@@ -34,12 +41,14 @@ public class HelpContactStage
         openSiteInBrowser( SocialMediaConstants.LINKEDIN.getLink() );
     }
 
+
     @FXML
     private void openFacebookInBrowser()
     {
         LOGGER.info( "Opening Facebook site in browser." );
         openSiteInBrowser( SocialMediaConstants.FACEBOOK.getLink() );
     }
+
 
     @FXML
     private void openGithubInBrowser()
@@ -48,6 +57,7 @@ public class HelpContactStage
         openSiteInBrowser( SocialMediaConstants.GITHUB.getLink() );
     }
 
+
     @FXML
     private void openInstagramInBrowser()
     {
@@ -55,17 +65,18 @@ public class HelpContactStage
         openSiteInBrowser( SocialMediaConstants.INSTAGRAM.getLink() );
     }
 
-    private void openSiteInBrowser( String link )
+
+    private void openSiteInBrowser( String aLink )
     {
         try
         {
-            LOGGER.info( "Creating URL from " + link );
-            URI uri = new URI( link );
+            LOGGER.info( "Creating URL from " + aLink );
+            URI uri = new URI( aLink );
             Desktop.getDesktop().browse( uri );
         }
         catch ( URISyntaxException | IOException e )
         {
-            LOGGER.error( e.getClass().getSimpleName() + ", failed to created url from " + link );
+            LOGGER.error( e.getClass().getSimpleName() + ", failed to created url from " + aLink );
             AlertUtils.popUpErrorAlert( e );
         }
     }

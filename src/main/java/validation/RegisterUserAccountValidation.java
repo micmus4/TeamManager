@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 public class RegisterUserAccountValidation implements ValidatableIf
 {
-    private static final Logger LOGGER = LogManager.getLogger( RegisterUserAccountValidation.class );
+    private final Logger LOGGER;
 
     private final StringProperty firstNameTextProperty;
 
@@ -59,6 +59,8 @@ public class RegisterUserAccountValidation implements ValidatableIf
     public RegisterUserAccountValidation( LinkedHashMap< Observable, ImageView > propertyToImageMap,
                                          ArrayList< Observable > properties )
     {
+        LOGGER = LogManager.getLogger( RegisterUserAccountValidation.class );
+
         firstNameTextProperty = (StringProperty) properties.get( 0 );
         firstNameStatus = propertyToImageMap.get( firstNameTextProperty );
 
@@ -126,71 +128,71 @@ public class RegisterUserAccountValidation implements ValidatableIf
         return map;
     }
 
-    private void createValidationForPasswordProperties( StringProperty property, ImageView status )
+    private void createValidationForPasswordProperties( StringProperty aProperty, ImageView aStatus )
     {
-        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_PASSWORD_MESSAGE, status );
-        property.addListener( ( observableValue, s, t1 ) ->
+        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_PASSWORD_MESSAGE, aStatus );
+        aProperty.addListener( ( observableValue, s, t1 ) ->
         {
-            final String propertyValue = property.getValue();
+            final String propertyValue = aProperty.getValue();
             if( propertyValue.isEmpty() )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_PASSWORD_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_PASSWORD_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else if ( propertyValue.length() < 8 || propertyValue.length() > 20 )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.WRONG_LENGTH_PASSWORD_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.WRONG_LENGTH_PASSWORD_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else if ( !checkWhetherPasswordMeetsCharacterRequirements( propertyValue ) )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.PASSWORD_NOT_MET_CHARACTERS_REQUIREMENTS_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.PASSWORD_NOT_MET_CHARACTERS_REQUIREMENTS_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else
             {
-                StageUtils.setImage( status, ImageConstants.CORRECT );
-                StageUtils.setTooltipForCorrectInput( status, "Password" );
-                isRegistrationDataValidMap.put( property, true );
+                StageUtils.setImage( aStatus, ImageConstants.CORRECT );
+                StageUtils.setTooltipForCorrectInput( aStatus, "Password" );
+                isRegistrationDataValidMap.put( aProperty, true );
             }
         } );
         LOGGER.info( "Created listener for validation of password property." );
     }
 
 
-    public void createValidationForPhoneNumberProperty( StringProperty property, ImageView status )
+    public void createValidationForPhoneNumberProperty( StringProperty aProperty, ImageView aStatus )
     {
-        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_PHONE_NUMBER_MESSAGE, status );
-        property.addListener( ( observableValue, s, t1 ) ->
+        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_PHONE_NUMBER_MESSAGE, aStatus );
+        aProperty.addListener( ( observableValue, s, t1 ) ->
         {
-            final String propertyValue = property.getValue();
+            final String propertyValue = aProperty.getValue();
             if( propertyValue.isEmpty() )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_PHONE_NUMBER_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_PHONE_NUMBER_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else if ( Pattern.compile( RegisterAccountConstants.EVERYTHING_BUT_DIGITS_SPACES_AND_DASHES_PATTERN ).
                     matcher( propertyValue ).find() )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.NON_DIGIT_CHARACTERS_IN_PHONE_NUMBER_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.NON_DIGIT_CHARACTERS_IN_PHONE_NUMBER_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else if ( !checkWhetherPhoneNumberMatchesAcceptablePatterns( propertyValue ) )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.WRONG_PHONE_NUMBER_PATTERN, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.WRONG_PHONE_NUMBER_PATTERN, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else
             {
-                StageUtils.setImage( status, ImageConstants.CORRECT );
-                StageUtils.setTooltipForCorrectInput( status, "Phone Number" );
-                isRegistrationDataValidMap.put( property, true );
+                StageUtils.setImage( aStatus, ImageConstants.CORRECT );
+                StageUtils.setTooltipForCorrectInput( aStatus, "Phone Number" );
+                isRegistrationDataValidMap.put( aProperty, true );
             }
 
         } );
@@ -198,64 +200,64 @@ public class RegisterUserAccountValidation implements ValidatableIf
     }
 
 
-    public void createValidationForLoginProperty( StringProperty property, ImageView status )
+    public void createValidationForLoginProperty( StringProperty aProperty, ImageView aStatus )
     {
-        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_LOGIN_MESSAGE, status );
-        property.addListener( ( observableValue, s, t1 ) ->
+        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_LOGIN_MESSAGE, aStatus );
+        aProperty.addListener( ( observableValue, s, t1 ) ->
         {
-            final String propertyValue = property.getValue();
+            final String propertyValue = aProperty.getValue();
             if( propertyValue.isEmpty() )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_LOGIN_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_LOGIN_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else if ( propertyValue.length() < 8 || propertyValue.length() > 20 )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.WRONG_LENGTH_LOGIN_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.WRONG_LENGTH_LOGIN_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else if ( Pattern.compile( RegisterAccountConstants.SPECIAL_CHARACTERS_PATTERN ).matcher( propertyValue ).find() )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.SPECIAL_CHARACTERS_FOUND_IN_LOGIN_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.SPECIAL_CHARACTERS_FOUND_IN_LOGIN_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else
             {
-                StageUtils.setImage( status, ImageConstants.CORRECT );
-                StageUtils.setTooltipForCorrectInput( status, "Login" );
-                isRegistrationDataValidMap.put( property, true );
+                StageUtils.setImage( aStatus, ImageConstants.CORRECT );
+                StageUtils.setTooltipForCorrectInput( aStatus, "Login" );
+                isRegistrationDataValidMap.put( aProperty, true );
             }
         } );
         LOGGER.info( "Created listener for validation of login property." );
     }
 
 
-    private void createValidationForEmailProperty( StringProperty property, ImageView status )
+    private void createValidationForEmailProperty( StringProperty aProperty, ImageView aStatus )
     {
-        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_EMAIL_MESSAGE, status );
-        property.addListener( ( observableValue, s, t1 ) ->
+        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_EMAIL_MESSAGE, aStatus );
+        aProperty.addListener( ( observableValue, s, t1 ) ->
         {
-            final String propertyValue = property.getValue();
+            final String propertyValue = aProperty.getValue();
             if( propertyValue.isEmpty() )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_EMAIL_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_EMAIL_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else if ( !( propertyValue.contains( "@" ) && propertyValue.contains( "." ) && propertyValue.length() >= 3) )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.NECESSARY_CHARACTERS_IN_EMAIL_NOT_FOUND, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.NECESSARY_CHARACTERS_IN_EMAIL_NOT_FOUND, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else
             {
-                StageUtils.setImage( status, ImageConstants.CORRECT );
-                StageUtils.setTooltipForCorrectInput( status, "Email" );
-                isRegistrationDataValidMap.put( property, true );
+                StageUtils.setImage( aStatus, ImageConstants.CORRECT );
+                StageUtils.setTooltipForCorrectInput( aStatus, "Email" );
+                isRegistrationDataValidMap.put( aProperty, true );
             }
 
         } );
@@ -263,15 +265,15 @@ public class RegisterUserAccountValidation implements ValidatableIf
     }
 
 
-    private boolean checkWhetherPasswordMeetsCharacterRequirements( String password )
+    private boolean checkWhetherPasswordMeetsCharacterRequirements( String aPassword )
     {   // looking for special character.
-        if ( Pattern.compile( RegisterAccountConstants.SPECIAL_CHARACTERS_PATTERN ).matcher( password ).find() )
+        if ( Pattern.compile( RegisterAccountConstants.SPECIAL_CHARACTERS_PATTERN ).matcher( aPassword ).find() )
         {   // looking for uppercase letter.
-            if ( Pattern.compile( RegisterAccountConstants.UPPERCASE_LETTERS_PATTERN ).matcher( password ).find() )
+            if ( Pattern.compile( RegisterAccountConstants.UPPERCASE_LETTERS_PATTERN ).matcher( aPassword ).find() )
             {    // looking for lowercase letter.
-                if ( Pattern.compile( RegisterAccountConstants.LOWERCASE_LETTERS_PATTERN ).matcher( password ).find() )
+                if ( Pattern.compile( RegisterAccountConstants.LOWERCASE_LETTERS_PATTERN ).matcher( aPassword ).find() )
                 {   // looking for digit.
-                    if ( Pattern.compile( RegisterAccountConstants.DIGITS_PATTERN ).matcher( password ).find() )
+                    if ( Pattern.compile( RegisterAccountConstants.DIGITS_PATTERN ).matcher( aPassword ).find() )
                     {
                         return true;
                     }
@@ -282,14 +284,14 @@ public class RegisterUserAccountValidation implements ValidatableIf
     }
 
 
-    private boolean checkWhetherPhoneNumberMatchesAcceptablePatterns( String phoneNumber )
+    private boolean checkWhetherPhoneNumberMatchesAcceptablePatterns( String aPhoneNumber )
     {
         // looking for pattern: 123456789
-        if ( !Pattern.compile( RegisterAccountConstants.PHONE_NUMBER_PATTERN ).matcher( phoneNumber ).matches() )
+        if ( !Pattern.compile( RegisterAccountConstants.PHONE_NUMBER_PATTERN ).matcher( aPhoneNumber ).matches() )
         {   // looking for pattern: 123-456-789
-            if ( !Pattern.compile( RegisterAccountConstants.PHONE_NUMBER_PATTERN_WITH_DASHES ).matcher( phoneNumber ).matches() )
+            if ( !Pattern.compile( RegisterAccountConstants.PHONE_NUMBER_PATTERN_WITH_DASHES ).matcher( aPhoneNumber ).matches() )
             {   // looking for pattern: 123 456 789
-                if ( !Pattern.compile( RegisterAccountConstants.PHONE_NUMBER_PATTERN_WITH_SPACES ).matcher( phoneNumber ).matches() )
+                if ( !Pattern.compile( RegisterAccountConstants.PHONE_NUMBER_PATTERN_WITH_SPACES ).matcher( aPhoneNumber ).matches() )
                 {
                     return false;
                 }

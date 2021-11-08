@@ -19,12 +19,14 @@ public enum SocialMediaConstants
     private final String link;
 
 
-    SocialMediaConstants(String link) {
-        this.link = link;
+    SocialMediaConstants( String aLink )
+    {
+        link = aLink;
     }
 
 
-    public String getLink(){
+    public String getLink()
+    {
         return link;
     }
 

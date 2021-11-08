@@ -1,6 +1,5 @@
 package utils;
 
-import constants.account.RegisterAccountConstants;
 import constants.other.ImageConstants;
 import constants.validation.ValidationConstants;
 import javafx.beans.Observable;
@@ -36,35 +35,35 @@ public class ValidationUtils
      *
      * In most cases, it should be applied to TextField's value properties that we don't want to be empty.
      *
-     * @param property value property of type StringProperty of JavaFX control that needs to be validated.
-     * @param status ImageView instance which shows user on the screen whether validation for given field passed.
-     * @param isRegistrationDataValidMap map of type HashMap< Observable, Boolean > which keys are all Stage's properties
+     * @param aProperty value property of type StringProperty of JavaFX control that needs to be validated.
+     * @param aStatus ImageView instance which shows user on the screen whether validation for given field passed.
+     * @param aIsRegistrationDataValidMap map of type HashMap< Observable, Boolean > which keys are all Stage's properties
      *                                     and values are Boolean values (true - valid property, false - invalid property).
-     * @param nameType specifies which name is going to be validated, eg. "First" (for First Name) or "Full" for (Full Name).
+     * @param aNameType specifies which name is going to be validated, eg. "First" (for First Name) or "Full" for (Full Name).
      */
 
-    public static void createValidationForNameTypeProperty( StringProperty property, ImageView status,
-                                                            HashMap< Observable, Boolean > isRegistrationDataValidMap,
-                                                            String nameType )
+    public static void createValidationForNameTypeProperty( StringProperty aProperty, ImageView aStatus,
+                                                            HashMap< Observable, Boolean > aIsRegistrationDataValidMap,
+                                                            String aNameType )
     {
-        StageUtils.setImageTooltip( ( nameType + ValidationConstants.EMPTY_NAME_MESSAGE ), status );
-        property.addListener( (observableValue, s, t1 ) ->
+        StageUtils.setImageTooltip( ( aNameType + ValidationConstants.EMPTY_NAME_MESSAGE ), aStatus );
+        aProperty.addListener( (observableValue, s, t1 ) ->
         {
-            final String propertyValue = property.getValue();
+            final String propertyValue = aProperty.getValue();
             if( propertyValue.isEmpty() )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( ( nameType + ValidationConstants.EMPTY_NAME_MESSAGE ), status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( ( aNameType + ValidationConstants.EMPTY_NAME_MESSAGE ), aStatus );
+                aIsRegistrationDataValidMap.put( aProperty, false );
             }
             else
             {
-                StageUtils.setImage( status, ImageConstants.CORRECT );
-                StageUtils.setTooltipForCorrectInput( status, ( nameType + " Name" ) );
-                isRegistrationDataValidMap.put( property, true );
+                StageUtils.setImage( aStatus, ImageConstants.CORRECT );
+                StageUtils.setTooltipForCorrectInput( aStatus, ( aNameType + " Name" ) );
+                aIsRegistrationDataValidMap.put( aProperty, true );
             }
         });
-        LOGGER.info( "Created listener for validation of " + nameType + " Name" );
+        LOGGER.info( "Created listener for validation of " + aNameType + " Name" );
     }
 
 
@@ -82,72 +81,72 @@ public class ValidationUtils
      * that validation did not pass because user didn't choose value for that property. It will also set value for this property
      * to false in 'isRegistrationDataValidMap'.
      *
-     * @param property value property of type ObjectProperty< T > of JavaFX control that needs to be validated.
-     * @param status ImageView instance which shows user on the screen whether validation for given field passed.
-     * @param isRegistrationDataValidMap map of type HashMap< Observable, Boolean > which keys are all Stage's properties
+     * @param aProperty value property of type ObjectProperty< T > of JavaFX control that needs to be validated.
+     * @param aStatus ImageView instance which shows user on the screen whether validation for given field passed.
+     * @param aIsRegistrationDataValidMap map of type HashMap< Observable, Boolean > which keys are all Stage's properties
      *                                  and values are Boolean values (true - valid property, false - invalid property).
-     * @param emptyMessage message which is displayed when validation isn't passed due to value not being chosen.
-     * @param propertyName given property's name, used in Logging to console and setting message after successfull validation.
+     * @param aEmptyMessage message which is displayed when validation isn't passed due to value not being chosen.
+     * @param aPropertyName given property's name, used in Logging to console and setting message after successful validation.
      */
 
-    public static < T > void createValidationForComboBoxTypeProperty( ObjectProperty< T > property, ImageView status,
-                                                                   HashMap< Observable, Boolean > isRegistrationDataValidMap,
-                                                                   String emptyMessage, String propertyName )
+    public static < T > void createValidationForComboBoxTypeProperty( ObjectProperty< T > aProperty, ImageView aStatus,
+                                                                   HashMap< Observable, Boolean > aIsRegistrationDataValidMap,
+                                                                   String aEmptyMessage, String aPropertyName )
     {
-        StageUtils.setImageTooltip( emptyMessage, status );
-        property.addListener( ( observableValue, s, t1 ) ->
+        StageUtils.setImageTooltip( aEmptyMessage, aStatus );
+        aProperty.addListener( ( observableValue, s, t1 ) ->
         {
-            final T propertyValue = property.getValue();
+            final T propertyValue = aProperty.getValue();
             if( propertyValue == null )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( emptyMessage, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( aEmptyMessage, aStatus );
+                aIsRegistrationDataValidMap.put( aProperty, false );
             }
             else
             {
-                StageUtils.setImage( status, ImageConstants.CORRECT );
-                StageUtils.setTooltipForCorrectInput( status, propertyName );
-                isRegistrationDataValidMap.put( property, true );
+                StageUtils.setImage( aStatus, ImageConstants.CORRECT );
+                StageUtils.setTooltipForCorrectInput( aStatus, aPropertyName );
+                aIsRegistrationDataValidMap.put( aProperty, true );
             }
         } );
-        LOGGER.info( "Created listener for validation of " + propertyName + " property." );
+        LOGGER.info( "Created listener for validation of " + aPropertyName + " property." );
     }
 
 
-    public static void createValidationForDatePickerTypeProperty( DatePicker datePicker, ImageView status,
-                                                                 HashMap< Observable, Boolean > isRegistrationDataValidMap,
-                                                                 String emptyMessage, String propertyName,
-                                                                 LocalDate disallowDatesBefore, LocalDate disallowDatesAfter )
+    public static void createValidationForDatePickerTypeProperty( DatePicker aDatePicker, ImageView aStatus,
+                                                                 HashMap< Observable, Boolean > aIsRegistrationDataValidMap,
+                                                                 String aEmptyMessage, String aPropertyName,
+                                                                 LocalDate aDisallowDatesBefore, LocalDate aDisallowDatesAfter )
     {
-        datePicker.setDayCellFactory( arg -> new DateCell() {
+        aDatePicker.setDayCellFactory( arg -> new DateCell() {
             @Override
             public void updateItem( LocalDate date, boolean empty )
             {
                 super.updateItem( date, empty );
-                setDisable( empty || date.compareTo( disallowDatesAfter ) > 0 || date.compareTo( disallowDatesBefore ) < 0 );
+                setDisable( empty || date.compareTo( aDisallowDatesAfter ) > 0 || date.compareTo( aDisallowDatesBefore ) < 0 );
             }
         });
 
-        StageUtils.setImageTooltip( emptyMessage, status );
-        ObjectProperty< LocalDate > property = datePicker.valueProperty();
+        StageUtils.setImageTooltip( aEmptyMessage, aStatus );
+        ObjectProperty< LocalDate > property = aDatePicker.valueProperty();
         property.addListener( ( observableValue, s, t1 ) ->
         {
             final LocalDate propertyValue = property.getValue();
             if( propertyValue == null )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( emptyMessage, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( aEmptyMessage, aStatus );
+                aIsRegistrationDataValidMap.put( property, false );
             }
             else
             {
-                StageUtils.setImage( status, ImageConstants.CORRECT );
-                StageUtils.setTooltipForCorrectInput( status, propertyName );
-                isRegistrationDataValidMap.put( property, true );
+                StageUtils.setImage( aStatus, ImageConstants.CORRECT );
+                StageUtils.setTooltipForCorrectInput( aStatus, aPropertyName );
+                aIsRegistrationDataValidMap.put( property, true );
             }
         } );
-        LOGGER.info( "Created listener for validation of " + propertyName + " property." );
+        LOGGER.info( "Created listener for validation of " + aPropertyName + " property." );
     }
 
 }

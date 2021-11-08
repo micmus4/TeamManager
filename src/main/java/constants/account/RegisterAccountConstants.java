@@ -10,6 +10,7 @@ public class RegisterAccountConstants
     /**
      * Height and width for RegisterUserAccountStage and RegisterFootballClubStage.
      */
+
     public static final Double REGISTER_USER_ACCOUNT_STAGE_HEIGHT = 600.00D;
     public static final Double REGISTER_USER_ACCOUNT_STAGE_WIDTH = 500.00D;
     public static final Double REGISTER_FOOTBALL_CLUB_ACCOUNT_STAGE_HEIGHT = 600.00D;
@@ -44,6 +45,7 @@ public class RegisterAccountConstants
     /**
      * Tooltip messages.
      */
+
     public static final String REGISTER_USER_ACCOUNT_STAGE_LOGIN_TOOLTIP_MESSAGE = "Login:\n\t- from 8 to 20 characters" +
             "\n\t- no special characters";
     public static final String REGISTER_USER_ACCOUNT_STAGE_PASSWORD_TOOLTIP_MESSAGE = "Password:\n\t- must have from 8 to 20" +
@@ -68,19 +70,18 @@ public class RegisterAccountConstants
     public static final String EMPTY_EMAIL_MESSAGE = "Email can not be empty";
     public static final String NECESSARY_CHARACTERS_IN_EMAIL_NOT_FOUND = "Email must have:\n\t- at least one '@'\n\t" +
             "- at least one '.'\n\t- at least three characters";
+    public static final String EMPTY_STADIUM_CAPACITY_MESSAGE = "Capacity can not be empty";
+    public static final String NON_DIGITAL_CHARACTERS_IN_CAPACITY_MESSAGE = "Capacity must be defined only in digit characters.";
+    public static final String ZERO_AT_THE_BEGINNING_OF_CAPACITY_MESSAGE = "Capacity can not start with zero.";
 
 
-
+    /**
+     * Names/Types
+     */
 
     public static final String FIRST_NAME_TYPE = "First";
     public static final String LAST_NAME_TYPE = "Second";
     public static final String COUNTRY_PROPERTY_NAME = "Country";
-    public static final String EMPTY_STADIUM_CAPACITY_MESSAGE = "Capacity can not be empty";
-    public static final String NON_DIGITAL_CHARACTERS_IN_CAPACITY_MESSAGE = "Capacity must be defined only in digit characters.";
-    public static final String ZERO_AT_THE_BEGINNING_OF_CAPACITY_MESSAGE = "Capacity can not start with zero.";
-    public static final String EMPTY_DATE_OF_CREATION_MESSAGE = "Date Of Creation can not be empty.";
-    public static final int OLDEST_FOOTBALL_CLUB_IN_THE_WORLD_YEAR_OF_CREATION = 1863;
-
     public static final String FULL_NAME_TYPE = "Full";
     public static final String SHORT_NAME_TYPE = "Short";
     public static final String STADIUM_NAME_TYPE = "Stadium";
@@ -91,6 +92,7 @@ public class RegisterAccountConstants
     /**
      * RegisterAccountValidation properties patterns.
      */
+
     public static final String PHONE_NUMBER_PATTERN = "^\\d{9}$";
     public static final String PHONE_NUMBER_PATTERN_WITH_SPACES = "^\\d{3} \\d{3} \\d{3}$";
     public static final String PHONE_NUMBER_PATTERN_WITH_DASHES = "^\\d{3}-\\d{3}-\\d{3}$";
@@ -100,7 +102,5 @@ public class RegisterAccountConstants
     public static final String DIGITS_PATTERN = "[0-9]";
     public static final String EVERYTHING_BUT_DIGITS_SPACES_AND_DASHES_PATTERN = "[^0-9\\-\\s]";
     public static final String NON_DIGITS_PATTERN = "[^0-9]";
-
-
 }
 

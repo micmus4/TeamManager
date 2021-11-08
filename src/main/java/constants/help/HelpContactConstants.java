@@ -24,7 +24,6 @@ public class HelpContactConstants
     public static final Double HELP_CONTACT_STAGE_WIDTH = 405.00D;
 
 
-
     /**
      * Relative paths (from resources dir) to FXML/CSS files for HelpContactStage.
      */

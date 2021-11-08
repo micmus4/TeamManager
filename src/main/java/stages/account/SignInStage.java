@@ -29,7 +29,7 @@ import java.net.URL;
 public class SignInStage implements PropertizableIf
 {
 
-    private static final Logger LOGGER = LogManager.getLogger( SignInStage.class );
+    private final Logger LOGGER;
 
     private static Stage signInStage;
 
@@ -52,12 +52,14 @@ public class SignInStage implements PropertizableIf
 
     private SimpleBooleanProperty isRegisterAccountStageOnScreen;
 
-    private final ObjectFactory objectFactory = ObjectFactory.getFactory();
+    private final AccountManager accountManager;
 
-    private final AccountManager accountManager = (AccountManager)
-            objectFactory.getBean( BeanIdConstants.ACCOUNT_MANAGER_SINGLETON );
-
-    public SignInStage(){}
+    public SignInStage()
+    {
+        ObjectFactory objectFactory = ObjectFactory.getFactory();
+        accountManager = (AccountManager) objectFactory.getBean( BeanIdConstants.ACCOUNT_MANAGER_SINGLETON );
+        LOGGER = LogManager.getLogger( SignInStage.class );
+    }
 
 
     public void initialize()

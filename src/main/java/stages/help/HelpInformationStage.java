@@ -8,10 +8,16 @@ import utils.StageUtils;
 
 public class HelpInformationStage
 {
-    private static final Logger LOGGER = LogManager.getLogger( HelpInformationStage.class );
+    private final Logger LOGGER;
 
     @FXML
     private Label versionLabel;
+
+
+    public HelpInformationStage()
+    {
+        LOGGER = LogManager.getLogger( HelpInformationStage.class );
+    }
 
     public void initialize()
     {

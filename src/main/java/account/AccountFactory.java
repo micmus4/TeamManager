@@ -2,39 +2,45 @@ package account;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
+@Scope( value = ConfigurableBeanFactory.SCOPE_SINGLETON )
 public class AccountFactory
 {
     private AccountFactory() {}
 
-    public UserAccount createUserAccount( StringProperty firstNameProperty, StringProperty lastNameProperty,
-                                         StringProperty loginProperty, StringProperty passwordProperty,
-                                         StringProperty emailProperty, StringProperty phoneNumberProperty,
-                                         ObjectProperty< String > countryProperty )
+
+    public UserAccount createUserAccount( StringProperty aFirstNameProperty, StringProperty aLastNameProperty,
+                                         StringProperty aLoginProperty, StringProperty aPasswordProperty,
+                                         StringProperty aEmailProperty, StringProperty aPhoneNumberProperty,
+                                         ObjectProperty< String > aCountryProperty )
     {
-        return new UserAccount( firstNameProperty.getValue(), lastNameProperty.getValue(), loginProperty.getValue(),
-                passwordProperty.getValue(), emailProperty.getValue(), phoneNumberProperty.getValue(), countryProperty.getValue() );
+        return new UserAccount( aFirstNameProperty.getValue(), aLastNameProperty.getValue(), aLoginProperty.getValue(),
+                aPasswordProperty.getValue(), aEmailProperty.getValue(),
+                aPhoneNumberProperty.getValue(), aCountryProperty.getValue() );
     }
 
 
-    public FootballClubAccount createFootballClubAccount( StringProperty fullNameTextProperty, StringProperty shortNameTextProperty,
-                                                          StringProperty stadiumNameTextProperty, StringProperty stadiumCapacityTextProperty,
-                                                          ObjectProperty< String > countryValueProperty, ObjectProperty< String > leagueValueProperty,
-                                                          ObjectProperty< LocalDate > dateOfCreationValueProperty )
+    public FootballClubAccount createFootballClubAccount( StringProperty aFullNameTextProperty, StringProperty aShortNameTextProperty,
+                                                          StringProperty aStadiumNameTextProperty, StringProperty aStadiumCapacityTextProperty,
+                                                          ObjectProperty< String > aCountryValueProperty, ObjectProperty< String > aLeagueValueProperty,
+                                                          ObjectProperty< LocalDate > aDateOfCreationValueProperty )
     {
-        int stadiumCapacityConvertedToInteger = Integer.parseInt( stadiumCapacityTextProperty.getValue() );
+        int stadiumCapacityConvertedToInteger = Integer.parseInt( aStadiumCapacityTextProperty.getValue() );
 
-        return new FootballClubAccount( fullNameTextProperty.getValue(), shortNameTextProperty.getValue(), stadiumNameTextProperty.getValue(),
-                stadiumCapacityConvertedToInteger, countryValueProperty.getValue(), leagueValueProperty.getValue(), dateOfCreationValueProperty.getValue() );
+        return new FootballClubAccount( aFullNameTextProperty.getValue(), aShortNameTextProperty.getValue(),
+                aStadiumNameTextProperty.getValue(), stadiumCapacityConvertedToInteger, aCountryValueProperty.getValue(),
+                aLeagueValueProperty.getValue(), aDateOfCreationValueProperty.getValue() );
     }
 
 
-    public CompleteAccount createCompleteAccount( UserAccount userAccount, FootballClubAccount footballClubAccount )
+    public CompleteAccount createCompleteAccount( UserAccount aUserAccount, FootballClubAccount aFootballClubAccount )
     {
-        return new CompleteAccount( userAccount, footballClubAccount );
+        return new CompleteAccount( aUserAccount, aFootballClubAccount );
     }
 }

@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 
 public abstract class AbstractRegisterAccountStage implements PropertizableIf
 {
-    private ObjectFactory objectFactory = ObjectFactory.getFactory();
+    private final ObjectFactory objectFactory = ObjectFactory.getFactory();
 
     protected AccountManager accountManager = (AccountManager)
             objectFactory.getBean( BeanIdConstants.ACCOUNT_MANAGER_SINGLETON );

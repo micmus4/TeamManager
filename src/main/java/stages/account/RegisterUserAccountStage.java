@@ -35,12 +35,9 @@ import java.util.LinkedHashMap;
 public class RegisterUserAccountStage extends AbstractRegisterAccountStage
 {
 
-    private static final Logger LOGGER = LogManager.getLogger( RegisterUserAccountStage.class );
+    private final Logger LOGGER;
 
-    private final ObjectFactory objectFactory = ObjectFactory.getFactory();
-
-    private final AccountFactory accountFactory = (AccountFactory)
-            objectFactory.getBean( BeanIdConstants.ACCOUNT_FACTORY_SINGLETON );
+    private final AccountFactory accountFactory;
 
     @FXML
     private TextField firstNameField;
@@ -119,6 +116,14 @@ public class RegisterUserAccountStage extends AbstractRegisterAccountStage
     private ImageView emailTooltipImage;
 
     private RegisterUserAccountValidation registerUserAccountValidation;
+
+
+    public RegisterUserAccountStage()
+    {
+        ObjectFactory objectFactory = ObjectFactory.getFactory();
+        accountFactory = (AccountFactory) objectFactory.getBean( BeanIdConstants.ACCOUNT_FACTORY_SINGLETON );
+        LOGGER = LogManager.getLogger( RegisterUserAccountStage.class );
+    }
 
 
     public void initialize()

@@ -4,7 +4,6 @@ import javafx.scene.control.Alert;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import stages.help.HelpInformationStage;
 
 public class AlertUtils
 {
@@ -25,20 +24,20 @@ public class AlertUtils
     }
 
 
-    public static void popUpInfoAlert( String title, String header, String content )
+    public static void popUpInfoAlert( String aTitle, String aHeader, String aContent )
     {
         LOGGER.info( "Popping up info alert." );
         Alert alert = new Alert( Alert.AlertType.INFORMATION );
 
-        alert.setTitle( title );
-        alert.setHeaderText( header );
-        alert.setContentText( content );
+        alert.setTitle( aTitle );
+        alert.setHeaderText( aHeader );
+        alert.setContentText( aContent );
         alert.showAndWait();
     }
 
 
-    public static void popUpInfoAlert( String title, String header )
+    public static void popUpInfoAlert( String aTitle, String aHeader )
     {
-        popUpInfoAlert( title, header, StringUtils.EMPTY );
+        popUpInfoAlert( aTitle, aHeader, StringUtils.EMPTY );
     }
 }

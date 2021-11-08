@@ -94,6 +94,9 @@ public class ProjectConstants
             ACCOUNTS_DAT_NAME ).replace( "\\", "/" );
 
 
+    /**
+     *  Relative path (from resources dir) to Spring configuration file.
+     */
 
     public static final String RELATIVE_PATH_TO_STRING_CONFIG_FILE =  ( ProjectConstants.SEP + "config" + ProjectConstants.SEP +
             SPRING_CONFIG_FILE_NAME ).replace( "\\", "/" );

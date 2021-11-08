@@ -22,50 +22,35 @@ public class UserAccount implements Serializable
 
     private String country;
 
-    public UserAccount( String firstName, String lastName, String login, String password,
-                        String email, String phoneNumber, String country )
+
+    public UserAccount( String aFirstName, String aLastName, String aLogin, String aPassword,
+                        String aEmail, String aPhoneNumber, String aCountry )
     {
-        this.firstName = StringUtils.capitalize( firstName );
-        this.lastName = StringUtils.capitalize( lastName );
-        this.login = login;
-        this.email = email;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.country = country;
+        firstName = StringUtils.capitalize( aFirstName );
+        lastName = StringUtils.capitalize( aLastName );
+        login = aLogin;
+        email = aEmail;
+        password = aPassword;
+        phoneNumber = aPhoneNumber;
+        country = aCountry;
     }
 
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
 
     public String getLogin()
     {
         return login;
     }
 
+
     public String getEmail()
     {
         return email;
     }
+
 
     public String getPassword()
     {
         return password;
     }
 
-    public String getPhoneNumber()
-    {
-        return phoneNumber;
-    }
-
-    public String getCountry()
-    {
-        return country;
-    }
 }

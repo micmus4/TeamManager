@@ -10,19 +10,16 @@ public class CompleteAccount implements Serializable
 
     private final FootballClubAccount footballClubAccount;
 
-    public CompleteAccount( UserAccount userAccount, FootballClubAccount footballClubAccount )
+
+    public CompleteAccount( UserAccount aUserAccount, FootballClubAccount aFootballClubAccount )
     {
-        this.userAccount = userAccount;
-        this.footballClubAccount = footballClubAccount;
+        userAccount = aUserAccount;
+        footballClubAccount = aFootballClubAccount;
     }
+
 
     public UserAccount getUserAccount()
     {
         return userAccount;
-    }
-
-    public FootballClubAccount getFootballClubAccount()
-    {
-        return footballClubAccount;
     }
 }

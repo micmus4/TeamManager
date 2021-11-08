@@ -23,15 +23,16 @@ public class FootballClubAccount implements Serializable
 
     private LocalDate dateOfCreation;
 
-    public FootballClubAccount( String fullName, String shortName, String stadiumName, int stadiumCapacity,
-                               String country, String league, LocalDate dateOfCreation )
+
+    public FootballClubAccount( String aFullName, String aShortName, String aStadiumName, int aStadiumCapacity,
+                               String aCountry, String aLeague, LocalDate aDateOfCreation )
     {
-        this.fullName = StringUtils.capitalize( fullName );
-        this.shortName = StringUtils.capitalize( shortName );
-        this.stadiumName = StringUtils.capitalize( shortName );
-        this.stadiumCapacity = stadiumCapacity;
-        this.country = country;
-        this.league = league;
-        this.dateOfCreation = dateOfCreation;
+        fullName = StringUtils.capitalize( aFullName );
+        shortName = StringUtils.capitalize( aShortName );
+        stadiumName = StringUtils.capitalize( aStadiumName );
+        stadiumCapacity = aStadiumCapacity;
+        country = aCountry;
+        league = aLeague;
+        dateOfCreation = aDateOfCreation;
     }
 }

@@ -22,8 +22,7 @@ import java.util.regex.Pattern;
 
 public class RegisterFootballClubValidation implements ValidatableIf
 {
-    private final Logger LOGGER = LogManager.getLogger( RegisterFootballClubValidation.class );
-
+    private final Logger LOGGER;
     
     private final StringProperty fullNameTextProperty;
 
@@ -58,31 +57,33 @@ public class RegisterFootballClubValidation implements ValidatableIf
     private final DatePicker dateOfCreationDataPicker;
 
 
-    public RegisterFootballClubValidation( LinkedHashMap< Observable, ImageView > propertyToImageMap,
-                                           ArrayList< Observable > properties, DatePicker dateOfCreationDataPicker )
+    public RegisterFootballClubValidation( LinkedHashMap< Observable, ImageView > aPropertyToImageMap,
+                                           ArrayList< Observable > aProperties, DatePicker aDateOfCreationDataPicker )
     {
-        fullNameTextProperty = (StringProperty) properties.get( 0 );
-        fullNameStatus = propertyToImageMap.get( fullNameTextProperty );
+        LOGGER = LogManager.getLogger( RegisterFootballClubValidation.class );
 
-        shortNameTextProperty = (StringProperty) properties.get( 1 );
-        shortNameStatus = propertyToImageMap.get( shortNameTextProperty );
+        fullNameTextProperty = (StringProperty) aProperties.get( 0 );
+        fullNameStatus = aPropertyToImageMap.get( fullNameTextProperty );
 
-        stadiumNameTextProperty = (StringProperty) properties.get( 2 );
-        stadiumNameStatus = propertyToImageMap.get( stadiumNameTextProperty );
+        shortNameTextProperty = (StringProperty) aProperties.get( 1 );
+        shortNameStatus = aPropertyToImageMap.get( shortNameTextProperty );
 
-        stadiumCapacityTextProperty = (StringProperty) properties.get( 3 );
-        stadiumCapacityStatus = propertyToImageMap.get( stadiumCapacityTextProperty );
+        stadiumNameTextProperty = (StringProperty) aProperties.get( 2 );
+        stadiumNameStatus = aPropertyToImageMap.get( stadiumNameTextProperty );
 
-        countryValueProperty = (ObjectProperty<String>) properties.get( 4 );
-        countryStatus = propertyToImageMap.get( countryValueProperty );
+        stadiumCapacityTextProperty = (StringProperty) aProperties.get( 3 );
+        stadiumCapacityStatus = aPropertyToImageMap.get( stadiumCapacityTextProperty );
 
-        leagueValueProperty = (ObjectProperty< String >) properties.get( 5 );
-        leagueStatus = propertyToImageMap.get( leagueValueProperty );
+        countryValueProperty = (ObjectProperty<String>) aProperties.get( 4 );
+        countryStatus = aPropertyToImageMap.get( countryValueProperty );
 
-        dateOfCreationValueProperty = (ObjectProperty< LocalDate >) properties.get( 6 );
-        dateOfCreationStatus = propertyToImageMap.get( dateOfCreationValueProperty );
+        leagueValueProperty = (ObjectProperty< String >) aProperties.get( 5 );
+        leagueStatus = aPropertyToImageMap.get( leagueValueProperty );
 
-        this.dateOfCreationDataPicker = dateOfCreationDataPicker;
+        dateOfCreationValueProperty = (ObjectProperty< LocalDate >) aProperties.get( 6 );
+        dateOfCreationStatus = aPropertyToImageMap.get( dateOfCreationValueProperty );
+
+        this.dateOfCreationDataPicker = aDateOfCreationDataPicker;
 
         isRegistrationDataValidMap = createIsRegistrationDataValidMap();
         LOGGER.info( "RegisterFootballClubValidation properties initialized." );
@@ -131,35 +132,35 @@ public class RegisterFootballClubValidation implements ValidatableIf
     }
 
 
-    private void createValidationForStadiumCapacity( StringProperty property, ImageView status )
+    private void createValidationForStadiumCapacity( StringProperty aProperty, ImageView aStatus )
     {
-        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_STADIUM_CAPACITY_MESSAGE, status );
-        property.addListener( ( observableValue, s, t1 ) ->
+        StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_STADIUM_CAPACITY_MESSAGE, aStatus );
+        aProperty.addListener( ( observableValue, s, t1 ) ->
         {
-            final String propertyValue = property.getValue();
+            final String propertyValue = aProperty.getValue();
             if( propertyValue.isEmpty() )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_STADIUM_CAPACITY_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.EMPTY_STADIUM_CAPACITY_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else if ( Pattern.compile( RegisterAccountConstants.NON_DIGITS_PATTERN ).matcher( propertyValue ).find() )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.NON_DIGITAL_CHARACTERS_IN_CAPACITY_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.NON_DIGITAL_CHARACTERS_IN_CAPACITY_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else if ( propertyValue.startsWith( "0" ) )
             {
-                StageUtils.setImage( status, ImageConstants.WRONG );
-                StageUtils.setImageTooltip( RegisterAccountConstants.ZERO_AT_THE_BEGINNING_OF_CAPACITY_MESSAGE, status );
-                isRegistrationDataValidMap.put( property, false );
+                StageUtils.setImage( aStatus, ImageConstants.WRONG );
+                StageUtils.setImageTooltip( RegisterAccountConstants.ZERO_AT_THE_BEGINNING_OF_CAPACITY_MESSAGE, aStatus );
+                isRegistrationDataValidMap.put( aProperty, false );
             }
             else
             {
-                StageUtils.setImage( status, ImageConstants.CORRECT );
-                StageUtils.setTooltipForCorrectInput( status, "Stadium Capacity" );
-                isRegistrationDataValidMap.put( property, true );
+                StageUtils.setImage( aStatus, ImageConstants.CORRECT );
+                StageUtils.setTooltipForCorrectInput( aStatus, "Stadium Capacity" );
+                isRegistrationDataValidMap.put( aProperty, true );
             }
         } );
         LOGGER.info( "Created listener for validation of Stadium Capacity property." );

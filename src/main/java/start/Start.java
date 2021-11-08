@@ -2,7 +2,6 @@ package start;
 
 import constants.account.SignInConstants;
 import constants.id.BeanIdConstants;
-import constants.other.ProjectConstants;
 import data.AccountManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import spring.ObjectFactory;
 import stages.account.SignInStage;
 import utils.AlertUtils;
@@ -23,27 +21,27 @@ import java.net.URL;
 
 public class Start extends Application {
 
-    private static final Logger LOGGER = LogManager.getLogger( Start.class );
+    private final Logger LOGGER = LogManager.getLogger( Start.class );
 
     private final ObjectFactory objectFactory = ObjectFactory.getFactory();
 
     private final AccountManager accountManager = (AccountManager)
             objectFactory.getBean( BeanIdConstants.ACCOUNT_MANAGER_SINGLETON );
 
-    public static void main( String[] args )
+    public static void main( String[] aArgs )
     {
-        launch( args );
+        launch( aArgs );
     }
 
     @Override
-    public void start( Stage signInStage )
+    public void start( Stage aSignInStage )
     {
         accountManager.loadAccountsFromFile();
-        signInStage = createSignInScene( signInStage );
+        aSignInStage = createSignInScene( aSignInStage );
         try
         {
-            SignInStage.setSignInStage( signInStage );
-            signInStage.show();
+            SignInStage.setSignInStage( aSignInStage );
+            aSignInStage.show();
             LOGGER.info( "SignInStage shown on screen." );
         }
         catch ( NullPointerException e )
@@ -54,7 +52,7 @@ public class Start extends Application {
     }
 
 
-    public Stage createSignInScene( Stage signInStage )
+    public Stage createSignInScene( Stage aSignInStage )
     {
         Parent root;
         URL urlToFXML;
@@ -76,7 +74,7 @@ public class Start extends Application {
         }
 
         LOGGER.info( "Creating SignInStage." );
-        return StageUtils.createStage( signInStage, "Sign in", false, root, urlToCSS,
+        return StageUtils.createStage( aSignInStage, "Sign in", false, root, urlToCSS,
                 SignInConstants.SIGN_IN_STAGE_WIDTH,
                 SignInConstants.SIGN_IN_STAGE_HEIGHT );
     }

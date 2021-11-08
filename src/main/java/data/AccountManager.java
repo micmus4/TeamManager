@@ -4,6 +4,8 @@ import account.CompleteAccount;
 import constants.other.ProjectConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import utils.AlertUtils;
 
@@ -12,18 +14,25 @@ import java.net.URL;
 import java.util.ArrayList;
 
 @Component
+@Scope( value = ConfigurableBeanFactory.SCOPE_SINGLETON )
 public class AccountManager
 {
-    private final Logger LOGGER = LogManager.getLogger( AccountManager.class );
+    private final Logger LOGGER;
 
-    private AccountManager(){}
+    private final ArrayList< CompleteAccount > listOfAccounts;
 
-    private final ArrayList< CompleteAccount > listOfAccounts = new ArrayList<>();
+    private final URL urlToAccountsDatabase;
 
-    private final URL urlToAccountsDatabase = getClass().getResource( ProjectConstants.RELATIVE_PATH_TO_ACCOUNTS_DAT_FILE );
+    private final File accountsDatabaseFile;
 
-    private final File accountsDatabaseFile = new File( urlToAccountsDatabase.getFile() );
 
+    private AccountManager()
+    {
+        LOGGER = LogManager.getLogger( AccountManager.class );
+        listOfAccounts = new ArrayList<>();
+        urlToAccountsDatabase = getClass().getResource( ProjectConstants.RELATIVE_PATH_TO_ACCOUNTS_DAT_FILE );
+        accountsDatabaseFile = new File( urlToAccountsDatabase.getFile() );
+    }
 
 
     private boolean isFileForStoringAccountsCreated()
@@ -46,7 +55,6 @@ public class AccountManager
             {
                 LOGGER.error( "Failed to create " + ProjectConstants.ACCOUNTS_DAT_NAME + " file." );
                 AlertUtils.popUpErrorAlert( e );
-                return;
             }
         }
     }
@@ -112,15 +120,15 @@ public class AccountManager
     }
 
 
-    public void addAccount( CompleteAccount account )
+    public void addAccount( CompleteAccount aAccount )
     {
-        listOfAccounts.add( account );
+        listOfAccounts.add( aAccount );
     }
 
 
-    public CompleteAccount logIn( String login, String password )
+    public CompleteAccount logIn( String aLogin, String aPassword )
     {
-        if( login.isEmpty() || password.isEmpty() )
+        if( aLogin.isEmpty() || aPassword.isEmpty() )
         {
             AlertUtils.popUpInfoAlert( "Log In failed", "You couldn't log into account",
                     "You have to provide login and password." );
@@ -131,7 +139,7 @@ public class AccountManager
 
         for( CompleteAccount completeAccount : listOfAccounts )
         {
-            if( completeAccount.getUserAccount().getLogin().equals( login ) )
+            if( completeAccount.getUserAccount().getLogin().equals( aLogin ) )
             {
                 account = completeAccount;
                 break;
@@ -140,44 +148,43 @@ public class AccountManager
 
         if( account == null )
         {
-            LOGGER.warn( "Log in failed (no account with login: " + login + " )." );
+            LOGGER.warn( "Log in failed (no account with login: " + aLogin + " )." );
             AlertUtils.popUpInfoAlert( "Log In failed", "You couldn't log into account",
-                    "There is no account with login " + login + " in the database." );
+                    "There is no account with login " + aLogin + " in the database." );
             return null;
         }
 
-        if( !account.getUserAccount().getPassword().equals( password ) )
+        if( !account.getUserAccount().getPassword().equals( aPassword ) )
         {
-            LOGGER.warn( "Log in failed (wrong password for account: " + login + " )." );
+            LOGGER.warn( "Log in failed (wrong password for account: " + aLogin + " )." );
             AlertUtils.popUpInfoAlert( "Log In failed", "You couldn't log into account",
                     "You have provided wrong password, please try again." );
             return null;
         }
 
-        LOGGER.info( "User logged into " + login + " account." );
+        LOGGER.info( "User logged into " + aLogin + " account." );
         AlertUtils.popUpInfoAlert( "Log In successful", "You have successfully logged into your account" );
         return account;
     }
 
 
-    public boolean lookForTheSameLoginAndEmailInDatabase( String login, String email )
+    public boolean lookForTheSameLoginAndEmailInDatabase( String aLogin, String aEmail )
     {
         for( CompleteAccount completeAccount : listOfAccounts )
         {
-            if( completeAccount.getUserAccount().getLogin().equals( login ) )
+            if( completeAccount.getUserAccount().getLogin().equals( aLogin ) )
             {
                 AlertUtils.popUpInfoAlert( "Error while registration",
-                        "Can't proceed further",  "There is already account in database with login " + login + "." );
+                        "Can't proceed further",  "There is already account in database with login " + aLogin + "." );
                 return true;
             }
-            if( completeAccount.getUserAccount().getEmail().equals( email ) )
+            if( completeAccount.getUserAccount().getEmail().equals( aEmail ) )
             {
                 AlertUtils.popUpInfoAlert( "Error while registration",
-                        "Can't proceed further",  "There is already account in database with email " + email + "." );
+                        "Can't proceed further",  "There is already account in database with email " + aEmail + "." );
                 return true;
             }
         }
         return false;
     }
-
 }

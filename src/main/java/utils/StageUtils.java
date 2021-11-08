@@ -37,34 +37,34 @@ public class StageUtils
     /**
      * Sets every Stage's bottom-right corner Label to display text about current project version.
      *
-     * @param versionLabel Label containing text about current version of project in every Stage's bottom-right corner.
+     * @param aVersionLabel Label containing text about current version of project in every Stage's bottom-right corner.
      */
 
-    public static void setProjectVersionLabel ( Label versionLabel )
+    public static void setProjectVersionLabel ( Label aVersionLabel )
     {
         LOGGER.info( "Setting project version label" );
-        versionLabel.setText( ProjectConstants.VERSION_INFO );
+        aVersionLabel.setText( ProjectConstants.VERSION_INFO );
     }
 
 
     /**
      * Creates a new Stage which is modeled by user's parameters.
      *
-     * @param title String value which is displayed in top-left corner of created Stage.
-     * @param isResizable boolean value which allows/disallows resizing opened Stage.
-     * @param root Parent parameter which has loaded .fxml file that has defined Stage's structure.
-     * @param cssFile URL's value with path to css style which serves as a stylesheet for Stage.
-     * @param width Double value, Stage's width.
-     * @param height Double value, Stage's height.
+     * @param aTitle String value which is displayed in top-left corner of created Stage.
+     * @param aIsResizable boolean value which allows/disallows resizing opened Stage.
+     * @param aRoot Parent parameter which has loaded .fxml file that has defined Stage's structure.
+     * @param aCssFile URL's value with path to css style which serves as a stylesheet for Stage.
+     * @param aWidth Double value, Stage's width.
+     * @param aHeight Double value, Stage's height.
      *
      * @return Stage instance created according to user's parameters.
      */
 
-    public static Stage createStage ( String title, Boolean isResizable, Parent root,
-                                     URL cssFile, Double width, Double height )
+    public static Stage createStage ( String aTitle, Boolean aIsResizable, Parent aRoot,
+                                      URL aCssFile, Double aWidth, Double aHeight )
     {
         Stage newStage = new Stage();
-        return createStage( newStage, title, isResizable, root, cssFile, width, height );
+        return createStage( newStage, aTitle, aIsResizable, aRoot, aCssFile, aWidth, aHeight );
     }
 
 
@@ -74,48 +74,48 @@ public class StageUtils
      *
      * @see StageUtils#createStage(String, Boolean, Parent, URL, Double, Double)
      *
-     * @param newStage Stage instance which will be modified and returned.
-     * @param title String value which is displayed in top-left corner of created Stage.
-     * @param isResizable boolean value which allows/disallows resizing opened Stage.
-     * @param root Parent parameter which has loaded .fxml file that has defined Stage's structure.
-     * @param cssFile URL's value with path to css style which serves as a stylesheet for Stage.
-     * @param width Double value, Stage's width.
-     * @param height Double value, Stage's height.
+     * @param aNewStage Stage instance which will be modified and returned.
+     * @param aTitle String value which is displayed in top-left corner of created Stage.
+     * @param aIsResizable boolean value which allows/disallows resizing opened Stage.
+     * @param aRoot Parent parameter which has loaded .fxml file that has defined Stage's structure.
+     * @param aCssFile URL's value with path to css style which serves as a stylesheet for Stage.
+     * @param aWidth Double value, Stage's width.
+     * @param aHeight Double value, Stage's height.
      *
      * @return Stage instance created according to user's parameters.
      */
 
-    public static Stage createStage ( Stage newStage, String title, Boolean isResizable, Parent root,
-                                     URL cssFile, Double width, Double height )
+    public static Stage createStage ( Stage aNewStage, String aTitle, Boolean aIsResizable, Parent aRoot,
+                                     URL aCssFile, Double aWidth, Double aHeight )
     {
         LOGGER.info( "Creating new stage." );
-        newStage.getIcons().add( transformPathToImageToImageInstance( ImageConstants.ICON ) );
-        newStage.setTitle( title );
-        newStage.setResizable( isResizable );
+        aNewStage.getIcons().add( transformPathToImageToImageInstance( ImageConstants.ICON ) );
+        aNewStage.setTitle( aTitle );
+        aNewStage.setResizable( aIsResizable );
 
-        Scene newScene = new Scene( root, width, height );
-        setStageStylesheets( newScene, cssFile );
-        newStage.setScene( newScene );
-        return newStage;
+        Scene newScene = new Scene( aRoot, aWidth, aHeight );
+        setStageStylesheets( newScene, aCssFile );
+        aNewStage.setScene( newScene );
+        return aNewStage;
     }
 
 
     /**
      * A method which accepts String parameter which serves as path to image file and creates Image instance from it.
      *
-     * @param stringPathToImage String value, path to image file.
+     * @param aStringPathToImage String value, path to image file.
      * @return
      *  - Image instance containing path to image file, if URL created from stringPathToImage is correct
      *  or
      *  - null value, if URL created from stringPathToImage is invalid and doesn't point to image file.
      */
 
-    public static Image transformPathToImageToImageInstance( String stringPathToImage )
+    public static Image transformPathToImageToImageInstance( String aStringPathToImage )
     {
-        URL urlToImage = StageUtils.class.getResource( stringPathToImage );
+        URL urlToImage = StageUtils.class.getResource( aStringPathToImage );
         if( urlToImage == null )
         {
-            LOGGER.warn( "Couldn't create URL from " + stringPathToImage, " there will be no image." );
+            LOGGER.warn( "Couldn't create URL from " + aStringPathToImage, " there will be no image." );
             return null;
         }
         return new Image( urlToImage.toString() );
@@ -129,10 +129,10 @@ public class StageUtils
      *
      * @see StageUtils#createListenerForAvoidingDuplicateStages(Stage, SimpleBooleanProperty)
      *
-     * @param childStage Stage instance, which is a Stage that is supposed to be shown on the screen if it isn't null.
-     * @param parentStage Stage instance, it has functionality to open childStage and therefore serves as its parent.
-     * @param modality Modality value, describes relation between childStage and parentStage. @see javafx.stage.Modality
-     * @param isStageOnScreenProperty SimpleBooleanProperty instance, this parameter is used to make sure that Stage
+     * @param aChildStage Stage instance, which is a Stage that is supposed to be shown on the screen if it isn't null.
+     * @param aParentStage Stage instance, it has functionality to open childStage and therefore serves as its parent.
+     * @param aModality Modality value, describes relation between childStage and parentStage. @see javafx.stage.Modality
+     * @param aIsStageOnScreenProperty SimpleBooleanProperty instance, this parameter is used to make sure that Stage
      *                                  can not show on the screen more than once.
      *
      * @return
@@ -140,51 +140,51 @@ public class StageUtils
      * - false, if childStage was null.
      */
 
-    public static boolean showStageAndCheckIfItsShown( Stage childStage, Stage parentStage, Modality modality,
-                                                      SimpleBooleanProperty isStageOnScreenProperty, boolean moveStageFlag )
+    public static boolean showStageAndCheckIfItsShown( Stage aChildStage, Stage aParentStage, Modality aModality,
+                                                      SimpleBooleanProperty aIsStageOnScreenProperty, boolean aMoveStageFlag )
     {
-        if( !checkIfStageIsNotNull( childStage ) )
+        if( !checkIfStageIsNotNull( aChildStage ) )
         {
             return false;
         }
 
-        if( moveStageFlag )
+        if( aMoveStageFlag )
         {
-            childStage.setX( parentStage.getX() + 25 );
-            childStage.setY( parentStage.getY() + 25 );
+            aChildStage.setX( aParentStage.getX() + 25 );
+            aChildStage.setY( aParentStage.getY() + 25 );
         }
 
-        childStage.initOwner( parentStage );
-        childStage.initModality( modality );
-        childStage.show();
-        createListenerForAvoidingDuplicateStages( childStage, isStageOnScreenProperty );
+        aChildStage.initOwner( aParentStage );
+        aChildStage.initModality( aModality );
+        aChildStage.show();
+        createListenerForAvoidingDuplicateStages( aChildStage, aIsStageOnScreenProperty );
         return true;
     }
 
 
-    public static void showStageAndCheckIfItsShown(Stage childStage, Stage parentStage, boolean hideParentStageFlag,
-                                                   boolean moveStageFlag, Modality modality,
-                                                   SimpleBooleanProperty isStageOnScreenProperty )
+    public static void showStageAndCheckIfItsShown( Stage aChildStage, Stage aParentStage, boolean aHideParentStageFlag,
+                                                   boolean aMoveStageFlag, Modality aModality,
+                                                   SimpleBooleanProperty aIsStageOnScreenProperty )
     {
-        if( !checkIfStageIsNotNull( childStage ) )
+        if( !checkIfStageIsNotNull( aChildStage ) )
         {
             return;
         }
 
-        if( moveStageFlag )
+        if( aMoveStageFlag )
         {
-            childStage.setX( parentStage.getX() + 25 );
-            childStage.setY( parentStage.getY() + 25 );
+            aChildStage.setX( aParentStage.getX() + 25 );
+            aChildStage.setY( aParentStage.getY() + 25 );
         }
 
-        childStage.initOwner( parentStage );
-        if ( hideParentStageFlag )
+        aChildStage.initOwner( aParentStage );
+        if ( aHideParentStageFlag )
         {
-            parentStage.hide();
+            aParentStage.hide();
         }
-        childStage.initModality( modality );
-        childStage.show();
-        createListenerForAvoidingDuplicateStages( childStage, isStageOnScreenProperty );
+        aChildStage.initModality( aModality );
+        aChildStage.show();
+        createListenerForAvoidingDuplicateStages( aChildStage, aIsStageOnScreenProperty );
     }
 
 
@@ -194,54 +194,54 @@ public class StageUtils
      *
      * @see StageUtils#showStageAndCheckIfItsShown(Stage, Stage, Modality, SimpleBooleanProperty, boolean) 
      *
-     * @param stage Stage instance, which we don't want to be duplicated on the screen.
-     * @param isStageOnScreen SimpleBooleanProperty instance, which tells us whether the Stage is displayed on the screen.
+     * @param aStage Stage instance, which we don't want to be duplicated on the screen.
+     * @param aIsStageOnScreen SimpleBooleanProperty instance, which tells us whether the Stage is displayed on the screen.
      */
 
-    private static void createListenerForAvoidingDuplicateStages( Stage stage, SimpleBooleanProperty isStageOnScreen )
+    private static void createListenerForAvoidingDuplicateStages( Stage aStage, SimpleBooleanProperty aIsStageOnScreen )
     {
-        stage.setOnCloseRequest( wE ->
+        aStage.setOnCloseRequest( wE ->
         {
-            isStageOnScreen.set( false );
-            LOGGER.info( "Closing " + stage.getTitle() + " Stage." );
+            aIsStageOnScreen.set( false );
+            LOGGER.info( "Closing " + aStage.getTitle() + " Stage." );
         });
     }
 
 
-    public static void closeStage( Stage stage, SimpleBooleanProperty isStageOnScreen )
+    public static void closeStage( Stage aStage, SimpleBooleanProperty aIsStageOnScreen )
     {
-        isStageOnScreen.set( false );
-        stage.close();
-        LOGGER.info( "Closing " + stage.getTitle() + " Stage." );
+        aIsStageOnScreen.set( false );
+        aStage.close();
+        LOGGER.info( "Closing " + aStage.getTitle() + " Stage." );
     }
 
 
-    public static void setImage( ImageView imageView, String pathToImage )
+    public static void setImage( ImageView aImageView, String aPathToImage )
     {
-        imageView.setImage( transformPathToImageToImageInstance( pathToImage ) );
+        aImageView.setImage( transformPathToImageToImageInstance( aPathToImage ) );
     }
 
 
-    public static void setImageTooltip( String message, ImageView imageView )
+    public static void setImageTooltip( String aMessage, ImageView aImageView )
     {
         Tooltip tooltip = new Tooltip();
-        tooltip.setText( message );
-        imageView.setPickOnBounds( true );
-        Tooltip.install( imageView, tooltip );
+        tooltip.setText( aMessage );
+        aImageView.setPickOnBounds( true );
+        Tooltip.install( aImageView, tooltip );
     }
 
 
-    public static void setTooltipForCorrectInput( ImageView status, String propertyName )
+    public static void setTooltipForCorrectInput( ImageView aStatus, String aPropertyName )
     {
-        setImageTooltip( propertyName + " is acceptable.", status );
+        setImageTooltip( aPropertyName + " is acceptable.", aStatus );
     }
 
 
-    private static boolean checkIfStageIsNotNull( Stage stage )
+    private static boolean checkIfStageIsNotNull( Stage aStage )
     {
         try
         {
-            if ( stage == null )
+            if ( aStage == null )
             {
                 LOGGER.error( "Failed to created stage" );
                 throw new NullPointerException();
@@ -262,14 +262,14 @@ public class StageUtils
     }
 
 
-    private static void setStageStylesheets( Scene scene, URL css )
+    private static void setStageStylesheets( Scene aScene, URL aCss )
     {
-        scene.getStylesheets().clear();
-        scene.getStylesheets().add( css.toExternalForm() );
-        scene.getStylesheets().add( getVersionLabelStylesheet().toExternalForm() );
+        aScene.getStylesheets().clear();
+        aScene.getStylesheets().add( aCss.toExternalForm() );
+        aScene.getStylesheets().add( getVersionLabelStylesheet().toExternalForm() );
     }
 
-    public static void loadCountriesToComboBox(ComboBox< String > countryComboBox )
+    public static void loadCountriesToComboBox(ComboBox< String > aCountryComboBox )
     {
         LOGGER.info( "Parsing countries data from JSON." );
         JSONParser parser = new JSONParser();
@@ -310,11 +310,11 @@ public class StageUtils
         }
 
         LOGGER.info( "Setting countries for ComboBox" );
-        countryComboBox.setItems( FXCollections.observableList( countriesArrayList ) );
+        aCountryComboBox.setItems( FXCollections.observableList( countriesArrayList ) );
     }
 
 
-    public static void loadLeaguesToComboBox( ComboBox< String > leagueComboBox )
+    public static void loadLeaguesToComboBox( ComboBox< String > aLeagueComboBox )
     {
         LOGGER.info( "Parsing countries data from PROPERTIES." );
         try( InputStream input = StageUtils.class.getResourceAsStream( ProjectConstants.RELATIVE_PATH_TO_LEAGUES_PROPERTIES_FILE ) )
@@ -332,7 +332,7 @@ public class StageUtils
                     .forEach( league -> leagues.add( (String)league ) );
 
             LOGGER.info( "Setting leagues for ComboBox" );
-            leagueComboBox.setItems( leagues );
+            aLeagueComboBox.setItems( leagues );
 
         }
         catch ( Exception e )

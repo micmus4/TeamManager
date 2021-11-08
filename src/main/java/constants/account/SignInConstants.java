@@ -32,7 +32,4 @@ public class SignInConstants
     public static String SIGN_IN_STAGE_RESOURCES_CSS = ( ProjectConstants.SEP + "css" + ProjectConstants.SEP +
             SIGN_IN_STAGE_CSS_NAME).replace( "\\", "/" );
 
-
-
-
 }

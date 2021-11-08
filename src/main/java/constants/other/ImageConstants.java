@@ -1,7 +1,5 @@
 package constants.other;
 
-import javax.swing.text.html.ImageView;
-
 public class ImageConstants
 {
     private ImageConstants(){}
@@ -12,7 +10,6 @@ public class ImageConstants
 
     public static final String ICON_NAME = "footballIcon.png";
 
-    public static final String QUESTION_MARK_NAME = "questionMark.png";
 
     public static final String CORRECT_NAME = "correct.png";
 
@@ -26,8 +23,6 @@ public class ImageConstants
     public static final String ICON = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
             ICON_NAME ).replace( "\\", "/" );
 
-    public static final String QUESTION_MARK = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
-            QUESTION_MARK_NAME ).replace( "\\", "/" );
 
     public static final String CORRECT = ( ProjectConstants.SEP + "images" + ProjectConstants.SEP +
             CORRECT_NAME ).replace( "\\", "/" );

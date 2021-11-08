@@ -12,7 +12,6 @@ import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -32,7 +31,7 @@ import java.util.LinkedHashMap;
 public class RegisterFootballClubStage extends AbstractRegisterAccountStage
 {
 
-    private final Logger LOGGER = LogManager.getLogger( RegisterFootballClubStage.class );
+    private final Logger LOGGER;
 
     @FXML
     private TextField fullNameField;
@@ -90,18 +89,16 @@ public class RegisterFootballClubStage extends AbstractRegisterAccountStage
     @FXML
     private ImageView countryStatus;
 
-    @FXML
-    private Label versionLabel;
-
     private RegisterFootballClubValidation registerFootballClubValidation;
 
     private final AccountFactory accountFactory;
 
-    private final ObjectFactory objectFactory = ObjectFactory.getFactory();
 
     public RegisterFootballClubStage()
     {
+        ObjectFactory objectFactory = ObjectFactory.getFactory();
         accountFactory = (AccountFactory) objectFactory.getBean( BeanIdConstants.ACCOUNT_FACTORY_SINGLETON );
+        LOGGER = LogManager.getLogger( RegisterFootballClubStage.class );
     }
 
     public void initialize()
